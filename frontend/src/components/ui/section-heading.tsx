@@ -3,9 +3,12 @@ import { cn } from "@/lib/utils";
 type SectionHeadingProps = {
   eyebrow: string;
   title: string;
-  /** `dark` = on an indigo section. */
+  /** `dark` = on a navy section. */
   tone?: "light" | "dark";
   align?: "start" | "center";
+  /** Big Figma H2s are 56/72 on desktop; the services H2 is a smaller
+   * 40/56 ("md"). Both are 36/50 on mobile. */
+  size?: "lg" | "md";
   className?: string;
 };
 
@@ -15,6 +18,7 @@ function SectionHeading({
   title,
   tone = "light",
   align = "start",
+  size = "lg",
   className,
 }: SectionHeadingProps) {
   const dark = tone === "dark";
@@ -22,7 +26,7 @@ function SectionHeading({
     <div className={cn(align === "center" && "text-center", className)}>
       <p
         className={cn(
-          "mb-3 font-heading text-sm font-medium",
+          "mb-6 font-heading text-base font-medium leading-7",
           dark ? "text-brand" : "text-brand-ink",
         )}
       >
@@ -30,7 +34,10 @@ function SectionHeading({
       </p>
       <h2
         className={cn(
-          "font-display text-3xl leading-snug font-extrabold md:text-5xl md:leading-snug",
+          "font-display text-[36px] font-extrabold leading-[50px]",
+          size === "lg"
+            ? "md:text-[56px] md:leading-[72px]"
+            : "md:text-[40px] md:leading-[56px]",
           dark ? "text-white" : "text-foreground",
         )}
       >

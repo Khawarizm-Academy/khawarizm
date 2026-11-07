@@ -1,58 +1,69 @@
-import { ArrowLeft, User } from "lucide-react";
 import { Container } from "@/components/layout";
-import { Arch, Burst, SectionHeading } from "@/components/ui";
+import { Portrait, SectionHeading, buttonVariants } from "@/components/ui";
 import { ROUTES } from "@/router/routes";
+import { cn } from "@/lib/utils";
 
+/** About collage (Figma desktop): sand card + translucent brown square
+ * with a floating triple-avatar chip on top, main photo block, and a
+ * gold medal holding a smaller portrait at the bottom left. On mobile
+ * it collapses to a single photo block like the mobile design. */
 function AboutArt() {
   return (
-    <div aria-hidden className="relative mx-auto h-[300px] w-full max-w-[460px] md:h-[400px]">
-      <div className="absolute top-[6%] left-[14%] h-[78%] w-[80%] rounded-md bg-sand" />
-      {/* "screen" with code lines */}
-      <div className="absolute top-[18%] left-[26%] w-[66%] rounded-md bg-navy p-4 shadow-xl shadow-navy/25 md:p-6">
-        <div className="mb-4 flex gap-1.5">
-          <span className="size-2 rounded-full bg-brand" />
-          <span className="size-2 rounded-full bg-accent" />
-          <span className="size-2 rounded-full bg-white/50" />
+    <div aria-hidden className="mx-auto w-full max-w-[570px]">
+      {/* Mobile: single image block. */}
+      <Portrait className="h-[340px] w-full rounded-none md:hidden" />
+
+      {/* Desktop: decorative composition (570×570 frame geometry). */}
+      <div className="relative hidden h-[540px] md:block">
+        {/* brown backdrop square (painted above the cream card, as in
+            the source layers) */}
+        <div className="absolute top-0 left-[12%] h-[56%] w-[67%] rounded-md bg-sand" />
+        <div className="absolute top-[11%] left-[3%] h-[29%] w-[34%] bg-border-strong" />
+        {/* white chip with three avatars */}
+        <div className="absolute top-[7%] left-[52%] flex h-[12%] w-[38%] items-center rounded-md bg-surface px-4 shadow-xl shadow-navy/10">
+          <span className="size-8 shrink-0 rounded-full bg-brand" />
+          <span className="-ml-2 size-8 shrink-0 rounded-full bg-accent ring-4 ring-surface" />
+          <span className="-ml-2 size-8 shrink-0 rounded-full bg-gold ring-4 ring-surface" />
         </div>
-        <div className="space-y-2.5">
-          <span className="block h-2 w-3/4 rounded-full bg-brand" />
-          <span className="block h-2 w-1/2 rounded-full bg-white/40" />
-          <span className="block h-2 w-5/6 rounded-full bg-accent" />
-          <span className="block h-2 w-2/5 rounded-full bg-white/40" />
-          <span className="block h-2 w-2/3 rounded-full bg-white/40" />
-        </div>
+        {/* main image */}
+        <Portrait className="absolute top-[24.5%] left-[17%] h-[56%] w-[82%]" />
+        {/* gold medal + its portrait */}
+        <div className="absolute bottom-0 left-0 aspect-square w-[38%] rounded-full bg-brand" />
+        <Portrait className="absolute bottom-0 left-[5%] h-[34%] w-[28%] rounded-none" />
       </div>
-      <Arch className="absolute bottom-0 left-0 flex h-[42%] w-[30%] items-end justify-center overflow-hidden bg-brand">
-        <User className="size-20 translate-y-2 fill-navy text-navy" strokeWidth={1} />
-      </Arch>
-      <Burst className="absolute top-0 right-[2%] size-16 text-brand" />
     </div>
   );
 }
 
 function About() {
   return (
-    <section id="about" className="bg-background py-16 md:py-28">
-      <Container className="grid items-center gap-12 md:grid-cols-2">
+    <section id="about" className="bg-background pt-8 pb-16 md:pt-36 md:pb-24">
+      {/* Art first in the DOM: top on mobile (Figma mobile shows the
+          image first), right column on desktop (RTL grid). */}
+      <Container className="grid items-center gap-12 md:grid-cols-2 md:gap-14">
+        <AboutArt />
         <div className="flex flex-col items-start gap-5">
-          <SectionHeading eyebrow="من نحن" title="أكاديمية تقنية واستوديو رقمي" />
-          <p className="font-heading text-lg text-foreground">
+          <SectionHeading
+            eyebrow="من نحن"
+            title="أكاديمية تقنية واستوديو رقمي"
+          />
+          <p className="mt-2 text-xl leading-9 text-foreground">
             نعلّم البرمجة ونبني المنتجات الرقمية
           </p>
-          <p className="max-w-md leading-loose text-muted">
+          <p className="max-w-[470px] text-base leading-[30px] text-muted">
             خوارزم أكاديمية تقنية عربية تعلّم الشباب الخوارزميات والبرمجة،
-            وتقدّم خدمات تصميم المواقع وتطوير التطبيقات. هدفنا أن نحوّل شغفك
-            التقني إلى مهارة ومشروع حقيقيين.
+            وتقدّم خدمات تصميم المواقع وتطوير التطبيقات. اسمنا مستوحى من
+            العالم الخوارزمي، وهدفنا أن نحوّل شغفك التقني إلى مهارة ومشروع.
           </p>
-          <a
-            href={ROUTES.about}
-            className="group inline-flex items-center gap-2 font-heading text-sm font-medium text-foreground underline-offset-4 hover:underline"
-          >
-            اعرف المزيد
-            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-          </a>
+          <div className="mt-3">
+            <a
+              href={ROUTES.about}
+              className={cn(buttonVariants({ variant: "surface", size: "lg" }))}
+            >
+              اعرف المزيد
+            </a>
+          </div>
         </div>
-        <AboutArt />
       </Container>
     </section>
   );

@@ -1,32 +1,31 @@
-import { Laptop, Sparkles, User } from "lucide-react";
 import { motion } from "motion/react";
 import { Container } from "@/components/layout";
 import { fadeUpItem, staggerContainer } from "@/components/motion";
-import { Arch, Burst, MiniCard, buttonVariants } from "@/components/ui";
+import { MiniCard, Portrait, buttonVariants } from "@/components/ui";
 import { SITE } from "@/constants/site";
 import { HOME_ANCHORS } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
+/** Hero collage (Figma desktop): navy disc behind two portrait blocks,
+ * with a gold dot, blue chip, outline square and a floating white card.
+ * On mobile it collapses to a single full-width photo block. */
 function HeroArt() {
   return (
-    <div
-      aria-hidden
-      className="relative mx-auto h-[280px] w-full max-w-[440px] md:h-[400px]"
-    >
-      <Arch className="absolute top-[8%] left-0 flex h-[58%] w-[34%] items-center justify-center bg-accent">
-        <Laptop className="size-12 text-white md:size-16" strokeWidth={1.5} />
-      </Arch>
-      <span className="absolute top-0 left-[44%] flex size-12 items-center justify-center rounded-full bg-brand md:size-14">
-        <Sparkles className="size-6 text-navy" />
-      </span>
-      <Arch className="absolute top-[26%] left-[34%] flex h-[66%] w-[36%] items-end justify-center overflow-hidden bg-brand">
-        <User
-          className="size-24 translate-y-3 fill-navy text-navy md:size-32"
-          strokeWidth={1}
-        />
-      </Arch>
-      <Burst className="absolute top-[2%] right-[6%] size-20 text-white/40 md:size-24" />
-      <MiniCard className="absolute bottom-[4%] left-0 w-[44%]" />
+    <div aria-hidden className="mx-auto w-full max-w-[560px]">
+      {/* Mobile: single hero image block. */}
+      <Portrait className="h-[334px] w-full rounded-none md:hidden" />
+
+      {/* Desktop: decorative composition (positions from the Figma
+          790×520 collage frame). */}
+      <div className="relative hidden h-[520px] md:block">
+        <div className="absolute left-[10%] top-[15%] aspect-square w-[47%] rounded-full bg-navy-surface" />
+        <div className="absolute right-0 top-[3.5%] aspect-square w-[19%] border-2 border-navy-500" />
+        <div className="absolute left-[55%] top-[11%] h-[16%] w-[14%] bg-navy-400" />
+        <Portrait className="absolute left-0 top-0 h-[51%] w-[32%] rounded-none" />
+        <Portrait className="absolute left-[38%] top-[39%] h-[52%] w-[31%]" />
+        <div className="absolute left-[36%] top-[3%] aspect-square w-[14%] rounded-full bg-brand" />
+        <MiniCard className="absolute bottom-[2%] left-[4%] w-[27%]" />
+      </div>
     </div>
   );
 }
@@ -34,33 +33,42 @@ function HeroArt() {
 function Hero() {
   return (
     <section className="overflow-hidden bg-navy text-navy-foreground">
-      <Container className="grid items-center gap-8 pt-4 pb-16 md:grid-cols-2 md:pt-8 md:pb-28">
+      <Container className="grid gap-10 pt-2 pb-16 md:min-h-[760px] md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-24">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-start gap-5"
+          className="order-last flex flex-col items-start gap-4 md:order-none"
         >
           <motion.p
             variants={fadeUpItem}
-            className="font-heading text-sm text-brand"
+            className="font-heading text-base font-medium leading-7 text-brand"
           >
             {SITE.tagline}
           </motion.p>
           <motion.h1
             variants={fadeUpItem}
-            className="font-display text-5xl leading-[1.3] font-extrabold text-white md:text-7xl md:leading-[1.25]"
+            className="font-display text-[44px] font-extrabold leading-[60px] text-white md:text-[72px] md:leading-[92px]"
           >
             نبني مستقبلك التقني
           </motion.h1>
           <motion.p
             variants={fadeUpItem}
-            className="max-w-md text-base leading-loose text-navy-muted md:text-lg"
+            className="mt-2 max-w-[560px] text-base leading-[30px] text-navy-muted md:mt-6"
           >
-            نعلّمك الخوارزميات والبرمجة، ونصمّم لك مواقعك وتطبيقاتك من الفكرة
+            نعلّمك الخوارزميات والبرمجة، ونصمم لك موقعك وتطبيقك من الفكرة
             إلى الإطلاق.
           </motion.p>
-          <motion.div variants={fadeUpItem} className="mt-2">
+          <motion.div
+            variants={fadeUpItem}
+            className="mt-2 flex flex-col items-start gap-4 md:mt-4 md:flex-row md:items-center"
+          >
+            <a
+              href={HOME_ANCHORS.courses}
+              className={cn(buttonVariants({ size: "lg" }))}
+            >
+              تصفح الدورات
+            </a>
             <a
               href={HOME_ANCHORS.works}
               className={cn(buttonVariants({ variant: "light", size: "lg" }))}
@@ -70,7 +78,7 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="order-first md:order-last">
+        <div className="order-first md:order-none">
           <HeroArt />
         </div>
       </Container>

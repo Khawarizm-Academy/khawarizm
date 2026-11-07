@@ -9,7 +9,7 @@ import { Container } from "./container";
 import { Logo } from "./logo";
 
 const linkClass =
-  "rounded-sm font-heading text-sm text-navy-foreground/80 transition-colors hover:text-brand";
+  "rounded-sm font-sans text-base text-white/70 transition-colors hover:text-brand";
 
 /** Indigo top bar; collapses into a toggled panel below `md`. */
 function Header() {
@@ -30,7 +30,7 @@ function Header() {
         <Logo className="text-white" />
 
         <nav aria-label="التنقل الرئيسي" className="hidden md:block">
-          <ul className="flex items-center gap-9">
+          <ul className="flex items-center gap-6">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
                 <a href={item.href} className={linkClass}>
@@ -44,7 +44,7 @@ function Header() {
         <a
           href={HOME_ANCHORS.contact}
           className={cn(
-            buttonVariants({ variant: "light", size: "sm" }),
+            buttonVariants({ variant: "light", size: "lg" }),
             "hidden md:inline-flex",
           )}
         >
@@ -57,7 +57,7 @@ function Header() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex size-10 items-center justify-center rounded-md border border-white/30 text-white md:hidden"
+          className="inline-flex size-12 items-center justify-center rounded-md border border-white text-white md:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -80,7 +80,7 @@ function Header() {
                     <a
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="block border-b border-white/10 py-3 font-heading text-base text-white"
+                      className="block border-b border-white/10 py-3 font-sans text-base text-white"
                     >
                       {item.label}
                     </a>

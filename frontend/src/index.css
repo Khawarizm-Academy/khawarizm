@@ -1,45 +1,75 @@
 /* ============================================
    Global styles — Tailwind CSS v4
-   Khawarizm tokens (from the Figma "Semantic Light"
-   collection). Light theme only for now: the design
-   is cream + indigo sections, no dark variant yet.
+   Khawarizm tokens — exact values from the
+   Figma "Semantic Light" collection used by
+   `figma-sources/home` (desktop + mobile).
+   Light theme only: the design is cream +
+   navy sections, no dark variant yet.
    ============================================ */
 @import "tailwindcss";
 
 :root {
-  --app-bg: #fbf4e4; /* cream canvas */
-  --app-foreground: #11245c; /* indigo ink (from the logo) */
-  --app-muted: #56607f;
-  --app-border: #e6dabd;
-  --app-surface: #fffdf8;
-  --app-sand: #f3e7cb; /* alternate cream section */
-  --app-brand: #e9b64f; /* gold: primary action */
-  --app-brand-foreground: #11245c; /* indigo text on gold (higher contrast than white) */
-  --app-brand-ink: #86590a; /* gold readable on cream (labels, links) */
-  --app-navy: #11245c; /* dark sections, header */
-  --app-navy-foreground: #fbf4e4;
-  --app-navy-muted: #b4bdd8;
-  --app-accent: #1e7bff; /* blue: links & shapes */
+  /* Cream canvas + indigo ink */
+  --app-bg: #fbf3e3; /* --bg-canvas: cream canvas */
+  --app-foreground: #0f1f45; /* --text-primary on light bg */
+  --app-muted: #0f1f45a3; /* --text-secondary (64% ink) */
+  --app-border: #ebd9b0; /* --border-default (soft gold) */
+  --app-border-strong: #dcc593; /* --border-strong on light bg */
+  --app-surface: #ffffff; /* --bg-surface */
+  --app-sand: #f5e6c8; /* --bg-section-alt / --cream-200 */
+
+  /* Gold brand */
+  --app-brand: #e5b65c; /* --brand-primary / --bg-cta */
+  --app-brand-hover: #d49b33; /* --brand-primary-hover */
+  --app-brand-foreground: #0f1f45; /* --text-on-gold */
+  --app-brand-ink: #8a5c14; /* --text-accent (gold readable on cream) */
+  --app-gold: #f0cb6a; /* --shape-gold (rating squares) */
+  --app-gold-100: #fbedc4; /* --gold-100 (chart bars) */
+
+  /* Dark navy sections */
+  --app-navy: #0f1f45; /* --bg-inverse */
+  --app-navy-foreground: #ffffff; /* --text-on-inverse */
+  --app-navy-muted: #ffffffa3; /* --text-on-inverse-secondary (64% white) */
+  --app-navy-surface: #172b5a; /* --bg-inverse-surface */
+  --app-navy-border: #223a74; /* --border-inverse */
+
+  /* Blue accent + decorative collage palette */
+  --app-accent: #1e86f0; /* --shape-blue */
+  --app-navy-500: #35508f;
+  --app-navy-400: #6d82b5;
+  --app-navy-300: #9aabd0;
+  --app-blue-300: #6eb6ff;
 
   color-scheme: light;
 }
 
 /* Map app tokens to Tailwind utilities
-   (`bg-background`, `text-muted`, `bg-navy`, `text-brand-ink`, …) */
+   (`bg-background`, `text-muted`, `bg-navy`, `text-brand-ink`,
+   `border-navy-border`, `bg-navy-surface`, …) */
 @theme inline {
   --color-background: var(--app-bg);
   --color-foreground: var(--app-foreground);
   --color-muted: var(--app-muted);
   --color-border: var(--app-border);
+  --color-border-strong: var(--app-border-strong);
   --color-surface: var(--app-surface);
   --color-sand: var(--app-sand);
   --color-brand: var(--app-brand);
+  --color-brand-hover: var(--app-brand-hover);
   --color-brand-foreground: var(--app-brand-foreground);
   --color-brand-ink: var(--app-brand-ink);
+  --color-gold: var(--app-gold);
+  --color-gold-100: var(--app-gold-100);
   --color-navy: var(--app-navy);
   --color-navy-foreground: var(--app-navy-foreground);
   --color-navy-muted: var(--app-navy-muted);
+  --color-navy-surface: var(--app-navy-surface);
+  --color-navy-border: var(--app-navy-border);
   --color-accent: var(--app-accent);
+  --color-navy-500: var(--app-navy-500);
+  --color-navy-400: var(--app-navy-400);
+  --color-navy-300: var(--app-navy-300);
+  --color-blue-300: var(--app-blue-300);
 
   /* Cairo = display, Readex Pro = headings/labels/buttons, Almarai = body */
   --font-sans: "Almarai", system-ui, "Segoe UI", Tahoma, sans-serif;
@@ -65,7 +95,8 @@
   /* Visible keyboard focus for every plain link/button
      (Button has its own ring via `focus-visible:ring-*`). */
   a:focus-visible,
-  button:focus-visible {
+  button:focus-visible,
+  select:focus-visible {
     outline: 2px solid var(--app-accent);
     outline-offset: 3px;
   }
