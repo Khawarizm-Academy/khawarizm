@@ -101,3 +101,39 @@
     outline-offset: 3px;
   }
 }
+
+/* ============================================
+   CSS animations (motion/system supplement)
+   For CSS-only decoration (collage ornaments).
+   JS/scroll animations live in
+   `src/components/motion`. Always pair with the
+   `motion-safe:` variant so users with the OS
+   "reduce motion" setting get a static page.
+   ============================================ */
+@theme {
+  /* Gentle vertical bob for floating ornaments. */
+  --animate-float: float 7s ease-in-out infinite;
+  /* Same bob, slower — for lower pieces to move out of phase. */
+  --animate-float-slow: float 11s ease-in-out infinite;
+  /* Snail-spin for the star-burst identity shape. */
+  --animate-rotate-slow: rotate-slow 80s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes rotate-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

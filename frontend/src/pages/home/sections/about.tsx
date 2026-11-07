@@ -1,12 +1,14 @@
 import { Container } from "@/components/layout";
+import { FadeIn } from "@/components/motion";
 import { Portrait, SectionHeading, buttonVariants } from "@/components/ui";
 import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
-/** About collage (Figma desktop): sand card + translucent brown square
- * with a floating triple-avatar chip on top, main photo block, and a
- * gold medal holding a smaller portrait at the bottom left. On mobile
- * it collapses to a single photo block like the mobile design. */
+/** About collage — the Figma frame's geometry: sand card + brown
+ * square (painted above it, as the source layers stack) with a
+ * floating triple-avatar chip on top, a main photo block, and a gold
+ * medal holding a smaller portrait at the bottom left. Collapses to a
+ * single photo block on mobile, like the mobile frame. */
 function AboutArt() {
   return (
     <div aria-hidden className="mx-auto w-full max-w-[570px]">
@@ -15,12 +17,11 @@ function AboutArt() {
 
       {/* Desktop: decorative composition (570×570 frame geometry). */}
       <div className="relative hidden h-[540px] md:block">
-        {/* brown backdrop square (painted above the cream card, as in
-            the source layers) */}
+        {/* cream card, then brown backdrop square (per source z-order) */}
         <div className="absolute top-0 left-[12%] h-[56%] w-[67%] rounded-md bg-sand" />
         <div className="absolute top-[11%] left-[3%] h-[29%] w-[34%] bg-border-strong" />
         {/* white chip with three avatars */}
-        <div className="absolute top-[7%] left-[52%] flex h-[12%] w-[38%] items-center rounded-md bg-surface px-4 shadow-xl shadow-navy/10">
+        <div className="motion-safe:animate-float absolute top-[7%] left-[52%] flex h-[12%] w-[38%] items-center rounded-md bg-surface px-4 shadow-xl shadow-navy/10">
           <span className="size-8 shrink-0 rounded-full bg-brand" />
           <span className="-ml-2 size-8 shrink-0 rounded-full bg-accent ring-4 ring-surface" />
           <span className="-ml-2 size-8 shrink-0 rounded-full bg-gold ring-4 ring-surface" />
@@ -41,8 +42,10 @@ function About() {
       {/* Art first in the DOM: top on mobile (Figma mobile shows the
           image first), right column on desktop (RTL grid). */}
       <Container className="grid items-center gap-12 md:grid-cols-2 md:gap-14">
-        <AboutArt />
-        <div className="flex flex-col items-start gap-5">
+        <FadeIn>
+          <AboutArt />
+        </FadeIn>
+        <FadeIn delay={0.1} className="flex flex-col items-start gap-5">
           <SectionHeading
             eyebrow="من نحن"
             title="أكاديمية تقنية واستوديو رقمي"
@@ -63,7 +66,7 @@ function About() {
               اعرف المزيد
             </a>
           </div>
-        </div>
+        </FadeIn>
       </Container>
     </section>
   );

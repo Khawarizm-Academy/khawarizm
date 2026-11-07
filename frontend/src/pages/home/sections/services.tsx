@@ -1,9 +1,12 @@
+import { motion } from "motion/react";
 import { Container } from "@/components/layout";
-import { SectionHeading } from "@/components/ui";
+import { fadeUpItem, staggerContainer } from "@/components/motion";
+import { SectionHeading, TextLink } from "@/components/ui";
 import { SERVICES } from "@/constants/home";
 import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
+/** Scroll-in stagger; every card lifts a little while hovered. */
 function Services() {
   return (
     <section id="services" className="bg-background pt-10 pb-16 md:pt-32 md:pb-28">
@@ -15,13 +18,24 @@ function Services() {
         />
         {/* Three separate bordered cards (400px tall in Figma); the
             middle "تصميم المواقع" card carries the featured shadow. */}
-        <ul className="mt-10 grid gap-6 md:mt-16 md:grid-cols-3">
+        <motion.ul
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 grid gap-6 md:mt-16 md:grid-cols-3"
+        >
           {SERVICES.map(({ icon: Icon, title, description }, i) => (
-            <li
+            <motion.li
               key={title}
+              variants={fadeUpItem}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
               className={cn(
-                "flex flex-col items-start rounded-md border border-border p-7 md:min-h-[400px] md:p-12",
-                i === 1 && "shadow-[0_32px_64px_rgba(15,31,69,0.04)]",
+                "flex flex-col items-start rounded-md border border-border p-7 transition-shadow md:min-h-[400px] md:p-12",
+                i === 1
+                  ? "shadow-[0_32px_64px_rgba(15,31,69,0.04)] hover:shadow-[0_32px_64px_rgba(15,31,69,0.10)]"
+                  : "hover:shadow-[0_32px_64px_rgba(15,31,69,0.04)]",
               )}
             >
               <span className="flex size-20 items-center justify-center rounded-full bg-brand">
@@ -33,15 +47,12 @@ function Services() {
               <p className="mt-3.5 flex-1 text-base leading-[30px] text-muted">
                 {description}
               </p>
-              <a
-                href={ROUTES.services}
-                className="mt-9 font-sans text-base leading-[30px] underline-offset-4 hover:underline"
-              >
+              <TextLink href={ROUTES.services} className="mt-9">
                 اعرف المزيد
-              </a>
-            </li>
+              </TextLink>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </Container>
     </section>
   );

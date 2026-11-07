@@ -93,6 +93,7 @@ function Works() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.25 }}
+                whileHover={{ y: -6 }}
                 className={cn(
                   "relative flex h-[416px] items-end overflow-hidden rounded-md bg-gradient-to-br",
                   project.gradient,

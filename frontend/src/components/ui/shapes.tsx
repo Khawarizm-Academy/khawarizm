@@ -10,7 +10,8 @@ export function Arch({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
-/** Outlined star-burst, drawn with `currentColor`. */
+/** Outlined star-burst, drawn with `currentColor`. The Khawarizm
+ * signature ornament — spin it with `motion-safe:animate-rotate-slow`. */
 export function Burst({
   className,
   points = 16,
@@ -36,9 +37,19 @@ export function Burst({
   );
 }
 
+type PortraitProps = ComponentProps<"div"> & {
+  /** Pictogram drawn inside the block (defaults to a person). */
+  icon?: typeof User;
+};
+
 /** Rounded portrait block standing in for a Figma photo placeholder:
- * blue-toned surface with a ghosted person pictogram at its base. */
-export function Portrait({ className, ...props }: ComponentProps<"div">) {
+ * blue-toned surface with a ghosted pictogram at its base. Pass
+ * `rounded-t-full` to turn it into one of the brand arches. */
+export function Portrait({
+  className,
+  icon: Icon = User,
+  ...props
+}: PortraitProps) {
   return (
     <div
       aria-hidden
@@ -48,7 +59,7 @@ export function Portrait({ className, ...props }: ComponentProps<"div">) {
       )}
       {...props}
     >
-      <User
+      <Icon
         className="absolute bottom-[-14%] left-1/2 size-[70%] -translate-x-1/2 text-navy/20"
         strokeWidth={1}
       />
@@ -56,11 +67,16 @@ export function Portrait({ className, ...props }: ComponentProps<"div">) {
   );
 }
 
+/* RTL note: the page is RTL, but the floating white mini-cards keep an
+   LTR inner flow (avatar on the left, bars on the right) exactly like
+   the Figma frames — hence `dir="ltr"` below. */
+
 /** Tiny UI-card illustration (gold avatar dot + a couple of text bars),
  * matching the white cards in the Figma hero collages. */
 export function MiniCard({ className }: { className?: string }) {
   return (
     <div
+      dir="ltr"
       aria-hidden
       className={cn(
         "flex items-center gap-3 rounded-md bg-white p-4 shadow-lg shadow-navy/15",
@@ -82,6 +98,7 @@ export function MiniCard({ className }: { className?: string }) {
 export function ChartCard({ className }: { className?: string }) {
   return (
     <div
+      dir="ltr"
       aria-hidden
       className={cn(
         "flex items-center gap-4 rounded-md bg-white p-4 shadow-lg shadow-navy/15",
@@ -89,7 +106,7 @@ export function ChartCard({ className }: { className?: string }) {
       )}
     >
       <span className="size-10 shrink-0 rounded-full bg-brand" />
-      <span className="flex items-end gap-1.5" aria-hidden>
+      <span className="flex items-end gap-1.5">
         {[14, 17, 19, 15, 10, 14, 9].map((h, i) => (
           <span
             key={i}

@@ -1,4 +1,4 @@
-import { ArrowRight, SearchX } from "lucide-react";
+import { ArrowLeft, SearchX } from "lucide-react";
 import { Link } from "react-router";
 import { PageTransition } from "@/components/motion";
 import { Container } from "@/components/layout";
@@ -42,7 +42,7 @@ function NotFoundPage() {
               to={ROUTES.home}
               className={cn(buttonVariants({ size: "lg" }))}
             >
-              <ArrowRight className="size-4" />
+              <ArrowLeft className="size-4" />
               العودة إلى الرئيسية
             </Link>
             <a

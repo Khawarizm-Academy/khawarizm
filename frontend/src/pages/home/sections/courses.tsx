@@ -1,15 +1,21 @@
+import { motion } from "motion/react";
 import { Container } from "@/components/layout";
-import { SectionHeading, buttonVariants } from "@/components/ui";
+import { fadeUpItem, staggerContainer } from "@/components/motion";
+import { SectionHeading, TextLink, buttonVariants } from "@/components/ui";
 import { COURSES } from "@/constants/home";
-import { cn } from "@/lib/utils";
 import { ROUTES } from "@/router/routes";
+import { cn } from "@/lib/utils";
 
 /** Continues the navy band started by Works. Card anatomy from the
  * Figma: big white index number beside a "دورة تقنية" caption +
- * duration, hairline divider, then course name / summary / link. */
+ * duration, hairline divider, then course name / summary / link.
+ * Cards rise in one after another and lift a little while hovered. */
 function Courses() {
   return (
-    <section id="courses" className="bg-navy pt-16 pb-16 text-navy-foreground md:pt-40 md:pb-24">
+    <section
+      id="courses"
+      className="bg-navy pt-16 pb-16 text-navy-foreground md:pt-40 md:pb-24"
+    >
       <Container>
         <SectionHeading
           tone="dark"
@@ -18,16 +24,27 @@ function Courses() {
           title="ابدأ رحلتك في البرمجة"
         />
 
-        <ol className="mt-10 grid gap-8 md:mt-16 md:grid-cols-3">
+        <motion.ol
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 grid gap-8 md:mt-16 md:grid-cols-3"
+        >
           {COURSES.map((course, i) => (
-            <li
+            <motion.li
               key={course.title}
+              variants={fadeUpItem}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
               className="flex flex-col rounded-md border border-navy-border px-6 pt-9 pb-8 md:px-12 md:pb-9"
             >
               <div className="flex items-start gap-4 md:gap-5">
+                {/* Numerals read LTR; `dir` keeps "01" from flipping. */}
                 <span
                   aria-label={`المرحلة ${i + 1}`}
-                  className="font-display text-[44px] font-extrabold leading-[60px] text-white md:text-[72px] md:leading-[92px]"
+                  dir="ltr"
+                  className="text-left font-display text-[44px] font-extrabold leading-[60px] text-white md:text-[72px] md:leading-[92px]"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -50,21 +67,22 @@ function Courses() {
                 </p>
               </div>
 
-              <a
+              <TextLink
                 href={ROUTES.courses}
-                className={cn(
-                  "mt-9 font-sans text-base leading-[30px] text-white",
-                  "underline-offset-4 hover:underline",
-                )}
+                tone="dark"
+                className="mt-9"
               >
                 اعرف المزيد
-              </a>
-            </li>
+              </TextLink>
+            </motion.li>
           ))}
-        </ol>
+        </motion.ol>
 
         <div className="mt-12 flex justify-center">
-          <a href={ROUTES.courses} className={cn(buttonVariants({ variant: "light" }))}>
+          <a
+            href={ROUTES.courses}
+            className={cn(buttonVariants({ variant: "light" }))}
+          >
             كل الدورات
           </a>
         </div>
