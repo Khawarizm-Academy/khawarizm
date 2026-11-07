@@ -1,12 +1,10 @@
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { useLocation, useOutlet } from "react-router";
-// Placeholder for the future shared shell:
-// import { Header } from "@/components/layout/header";
-// import { Footer } from "@/components/layout/footer";
+import { Footer, Header } from "@/components/layout";
 import { pageTransitionProps } from "@/components/motion";
 
 /** App-wide wrapper every route renders into. Hosts the shared shell
- * (header/footer when added) and animates between routes. */
+ * (header/footer) and animates between routes. */
 function RootLayout() {
   const location = useLocation();
   /** Snapshot the current outlet so the exiting page keeps rendering
@@ -14,17 +12,21 @@ function RootLayout() {
   const outlet = useOutlet();
 
   return (
-    <div className="flex min-h-svh flex-col bg-background text-foreground">
-      {/* <Header /> */}
-      <main className="flex-1">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={location.pathname} {...pageTransitionProps}>
-            {outlet}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      {/* <Footer /> */}
-    </div>
+    /** `reducedMotion="user"` makes every motion animation respect the
+     * OS "reduce motion" setting. */
+    <MotionConfig reducedMotion="user">
+      <div className="flex min-h-svh flex-col bg-background text-foreground">
+        <Header />
+        <main className="flex-1">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={location.pathname} {...pageTransitionProps}>
+              {outlet}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }
 

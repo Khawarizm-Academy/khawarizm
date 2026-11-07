@@ -1,49 +1,72 @@
 /* ============================================
    Global styles — Tailwind CSS v4
-   Design tokens flip automatically with the
-   system color scheme (light / dark).
+   Khawarizm tokens (from the Figma "Semantic Light"
+   collection). Light theme only for now: the design
+   is cream + indigo sections, no dark variant yet.
    ============================================ */
 @import "tailwindcss";
 
 :root {
-  --app-bg: #ffffff;
-  --app-foreground: #08060d;
-  --app-muted: #5f5870;
-  --app-border: #e5e4e7;
-  --app-surface: #f6f5fb;
-  --app-brand: #aa3bff;
-  --app-brand-foreground: #ffffff;
+  --app-bg: #fbf4e4; /* cream canvas */
+  --app-foreground: #11245c; /* indigo ink (from the logo) */
+  --app-muted: #56607f;
+  --app-border: #e6dabd;
+  --app-surface: #fffdf8;
+  --app-sand: #f3e7cb; /* alternate cream section */
+  --app-brand: #e9b64f; /* gold: primary action */
+  --app-brand-foreground: #11245c; /* indigo text on gold (higher contrast than white) */
+  --app-brand-ink: #86590a; /* gold readable on cream (labels, links) */
+  --app-navy: #11245c; /* dark sections, header */
+  --app-navy-foreground: #fbf4e4;
+  --app-navy-muted: #b4bdd8;
+  --app-accent: #1e7bff; /* blue: links & shapes */
 
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --app-bg: #101118;
-    --app-foreground: #f3f4f6;
-    --app-muted: #9ca3af;
-    --app-border: #2e303a;
-    --app-surface: #1a1c25;
-    --app-brand: #c084fc;
-    --app-brand-foreground: #16171d;
-  }
+  color-scheme: light;
 }
 
 /* Map app tokens to Tailwind utilities
-   (`bg-background`, `text-muted`, `border-border`, …) */
+   (`bg-background`, `text-muted`, `bg-navy`, `text-brand-ink`, …) */
 @theme inline {
   --color-background: var(--app-bg);
   --color-foreground: var(--app-foreground);
   --color-muted: var(--app-muted);
   --color-border: var(--app-border);
   --color-surface: var(--app-surface);
+  --color-sand: var(--app-sand);
   --color-brand: var(--app-brand);
   --color-brand-foreground: var(--app-brand-foreground);
-  --font-sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --color-brand-ink: var(--app-brand-ink);
+  --color-navy: var(--app-navy);
+  --color-navy-foreground: var(--app-navy-foreground);
+  --color-navy-muted: var(--app-navy-muted);
+  --color-accent: var(--app-accent);
+
+  /* Cairo = display, Readex Pro = headings/labels/buttons, Almarai = body */
+  --font-sans: "Almarai", system-ui, "Segoe UI", Tahoma, sans-serif;
+  --font-display: "Cairo", "Almarai", system-ui, sans-serif;
+  --font-heading: "Readex Pro", "Cairo", system-ui, sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-padding-top: 1rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     @apply min-h-svh bg-background font-sans text-foreground antialiased;
+  }
+
+  /* Visible keyboard focus for every plain link/button
+     (Button has its own ring via `focus-visible:ring-*`). */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--app-accent);
+    outline-offset: 3px;
   }
 }
