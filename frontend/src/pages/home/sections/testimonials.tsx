@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 import { Container } from "@/components/layout";
-import { fadeUpItem, staggerContainer } from "@/components/motion";
+import { staggerContainer } from "@/components/motion";
 import { SectionHeading, buttonVariants } from "@/components/ui";
 import { TESTIMONIALS } from "@/constants/home";
 import { cn } from "@/lib/utils";
@@ -15,14 +16,28 @@ const CARD_CORNER: Record<number, string> = {
   3: "rounded-md md:rounded-tl-none md:rounded-tr-none md:rounded-bl-none",
 };
 
+const reviewCardVariants = (index: number): Variants => ({
+  hidden: {
+    opacity: 0,
+    y: index % 2 === 0 ? 30 : -30,
+    rotate: index % 2 === 0 ? -1.2 : 1.2,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+});
+
 function TestimonialCard({ testimonial: t, index }: {
   testimonial: Testimonial;
   index: number;
 }) {
   return (
     <motion.li
-      variants={fadeUpItem}
-      whileHover={{ y: -4 }}
+      variants={reviewCardVariants(index)}
+      whileHover={{ y: index % 2 === 0 ? -6 : 6 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={cn(
         "flex flex-col border border-border p-6 md:p-12",

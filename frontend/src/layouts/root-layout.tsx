@@ -15,7 +15,7 @@ function RootLayout() {
       <div className="flex min-h-svh flex-col bg-background text-foreground">
         <Header />
         <main className="flex-1">
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="wait" initial>
             <motion.div key={location.pathname} {...pageTransitionProps}>
               {outlet}
             </motion.div>
