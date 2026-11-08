@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
 
 /** Decorative arch (rounded-top block): the identity shape of the
  * Khawarizm artwork. Always hidden from assistive tech. */
@@ -67,31 +68,36 @@ export function Portrait({
   );
 }
 
-/* RTL note: the page is RTL, but the floating white mini-cards keep an
-   LTR inner flow (avatar on the left, bars on the right) exactly like
-   the Figma frames — hence `dir="ltr"` below. */
+export function MiniCard({
+   className = "",
+ }: {
+   className?: string;
+ }) {
+   return (
+     <motion.div
+       className={`absolute rounded-[5px] bg-white shadow-sm ${className}`}
+       animate={{
+         y: [0, -5, 0],
+         rotate: [-1, 0.5, -1],
+       }}
+       transition={{
+         duration: 4,
+         repeat: Infinity,
+         ease: "easeInOut",
+       }}
+     >
+       <div className="flex items-center gap-4 p-4">
+         <div className="h-10 w-10 shrink-0 rounded-full bg-brand" />
 
-/** Tiny UI-card illustration (gold avatar dot + a couple of text bars),
- * matching the white cards in the Figma hero collages. */
-export function MiniCard({ className }: { className?: string }) {
-  return (
-    <div
-      dir="ltr"
-      aria-hidden
-      className={cn(
-        "flex items-center gap-3 rounded-md bg-white p-4 shadow-lg shadow-navy/15",
-        className,
-      )}
-    >
-      <span className="size-10 shrink-0 rounded-full bg-brand" />
-      <span className="min-w-0 flex-1 space-y-2">
-        <span className="block h-3 w-full max-w-[76px] rounded-sm bg-border" />
-        <span className="block h-1.5 w-full max-w-[62px] rounded-full bg-border/70" />
-        <span className="block h-1.5 w-full max-w-[50px] rounded-full bg-border/70" />
-      </span>
-    </div>
-  );
-}
+         <div className="flex flex-1 flex-col gap-2">
+           <span className="h-2 w-[72%] rounded-full bg-brand/40" />
+           <span className="h-2 w-full rounded-full bg-brand/30" />
+           <span className="h-2 w-[82%] rounded-full bg-brand/30" />
+         </div>
+       </div>
+     </motion.div>
+   );
+ }
 
 /** White card with a mini bar chart, lifted from the gold CTA
  * artwork (`--gold-100` bars + gold avatar dot). */

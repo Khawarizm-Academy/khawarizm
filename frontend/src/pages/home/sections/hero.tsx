@@ -1,50 +1,260 @@
 import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
 import { Container } from "@/components/layout";
 import { fadeUpItem, staggerContainer } from "@/components/motion";
-import { Burst, MiniCard, Portrait, buttonVariants } from "@/components/ui";
+import {
+  BrainDoodle,
+  BurstDoodle,
+  DoodleArrow,
+  DoodleConnector,
+  DoodleCurve,
+  DoodleSquiggle,
+  ImagePlaceholder,
+  MiniCard,
+  Sparkle,
+  buttonVariants,
+} from "@/components/ui";
 import { SITE } from "@/constants/site";
 import { HOME_ANCHORS } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
-/** Hero collage — the Figma frame's geometry (navy disc, outline
- * square, blue chip, twin photo blocks, gold dot, floating card) with
- * the brand identity shapes restored: the top-rounded **arch** portrait
- * and the star **burst**, plus a slow CSS float on light ornaments.
- * Collapse to a single photo block on mobile, like the mobile frame. */
+/** Hero collage — the Figma frame's geometry (navy disc, laptop
+ * block, blue chip, gold disc, arch portrait, floating card) with
+ * the shared doodle components from `@/components/ui` layered on
+ * top. All ornaments float on their own idle loops. Collapse to a
+ * single photo block on mobile, like the mobile frame. Purely
+ * positional geometry (% offsets) — the drawings themselves live in
+ * `ui/doodles` + `ui/svg-paths`. */
 function HeroArt() {
   return (
-    <div aria-hidden className="mx-auto w-full max-w-[560px]">
-      {/* Mobile: single hero image block. */}
-      <Portrait className="h-[334px] w-full rounded-none md:hidden" />
-
-      {/* Desktop: decorative composition (790×520 frame geometry). */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 16 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="relative hidden h-[520px] md:block"
-      >
-        <div className="absolute left-[10%] top-[15%] aspect-square w-[47%] rounded-full bg-navy-surface" />
-        <div className="absolute top-[3.5%] right-0 aspect-square w-[19%] border-2 border-navy-500" />
-        <div className="absolute left-[55%] top-[11%] h-[16%] w-[14%] bg-navy-400" />
-
-        <Burst
-          className="motion-safe:animate-rotate-slow absolute top-[2%] left-[26%] size-14 text-white/40"
-          points={12}
+    <div aria-hidden className="mx-auto w-full max-w-[790px]">
+      {/* Mobile */}
+      <div className="relative h-[360px] md:hidden">
+        <ImagePlaceholder
+          label="Hero image"
+          className="absolute left-[18%] top-[12%] h-[58%] w-[64%] rounded-t-full"
         />
 
-        {/* Brand arch portrait (was here before the Figma rebuild —
-            the rounded-t-top is the Khawarizm signature shape). */}
-        <Portrait className="absolute top-0 left-0 h-[51%] w-[32%] rounded-t-full" />
-        <Portrait className="absolute left-[38%] top-[39%] h-[52%] w-[31%]" />
+        <div className="absolute left-[8%] top-[8%] size-16 rounded-full bg-brand">
+          <Sparkle className="m-auto size-10 p-2 text-navy" />
+        </div>
 
-        {/* Gold sparkle dot — bobs gently. */}
-        <span className="motion-safe:animate-float absolute top-[3%] left-[36%] flex aspect-square w-[14%] items-center justify-center rounded-full bg-brand">
-          <Sparkles className="size-6 text-navy" />
-        </span>
+        <BrainDoodle className="absolute right-[4%] top-[8%] w-20 text-navy-500" />
 
-        <MiniCard className="motion-safe:animate-float-slow absolute bottom-[2%] left-[4%] w-[27%]" />
+        <MiniCard className="bottom-[5%] left-[10%] w-[42%]" />
+      </div>
+
+      {/* Desktop */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0.96,
+          y: 16,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          delay: 0.15,
+          ease: "easeOut",
+        }}
+        className="relative hidden h-[520px] md:block"
+      >
+        {/* ─────────────────────────────
+            Background organic shape
+        ───────────────────────────── */}
+
+        <div
+          className="
+            absolute
+            left-[10%]
+            top-[15%]
+            aspect-square
+            w-[47%]
+            rounded-full
+            bg-navy-surface
+          "
+        />
+
+        {/* Subtle secondary blob */}
+        <div
+          className="
+            absolute
+            left-[20%]
+            top-[34%]
+            h-[28%]
+            w-[42%]
+            rounded-[45%]
+            bg-navy-surface/70
+          "
+        />
+
+        {/* ─────────────────────────────
+            Laptop placeholder
+        ───────────────────────────── */}
+
+        <div
+          className="
+            absolute
+            left-[7%]
+            top-[7%]
+            h-[50%]
+            w-[30%]
+            overflow-hidden
+            rounded-t-[48%]
+            rounded-b-[6px]
+            bg-[#2389ed]
+          "
+        >
+          <ImagePlaceholder
+            label="Laptop image"
+            className="absolute inset-[8%] rounded-t-[25%] bg-transparent"
+          />
+        </div>
+
+        <DoodleConnector className="absolute left-[20%] top-[49%] w-[24%] text-navy-500" />
+
+        {/* ─────────────────────────────
+            Gold sparkle
+        ───────────────────────────── */}
+
+        <motion.div
+          className="
+            absolute
+            left-[37%]
+            top-[7%]
+            flex
+            aspect-square
+            w-[14%]
+            items-center
+            justify-center
+            rounded-full
+            bg-brand
+          "
+          animate={{
+            y: [0, -7, 0],
+          }}
+          transition={{
+            duration: 3.8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <Sparkle className="w-[55%] text-navy" />
+        </motion.div>
+
+        {/* ─────────────────────────────
+            Brain doodle
+        ───────────────────────────── */}
+
+        <BrainDoodle
+          className="
+            absolute
+            left-[52%]
+            top-[13%]
+            w-[16%]
+            text-navy-500
+          "
+        />
+
+        {/* ─────────────────────────────
+            Burst
+        ───────────────────────────── */}
+
+        <BurstDoodle
+          className="
+            absolute
+            left-[72%]
+            top-[4%]
+            w-[15%]
+            text-navy-500
+          "
+        />
+
+        {/* ─────────────────────────────
+            Portrait placeholder
+        ───────────────────────────── */}
+
+        <div
+          className="
+            absolute
+            left-[39%]
+            top-[39%]
+            h-[52%]
+            w-[31%]
+            overflow-hidden
+            rounded-t-[45%]
+            rounded-b-[6px]
+            bg-brand
+          "
+        >
+          <ImagePlaceholder
+            label="Portrait image"
+            className="
+              absolute
+              inset-x-[5%]
+              bottom-0
+              top-[5%]
+              bg-transparent
+            "
+          />
+        </div>
+
+        {/* ─────────────────────────────
+            Left hand-drawn squiggle
+        ───────────────────────────── */}
+
+        <DoodleSquiggle
+          className="
+            absolute
+            left-[3%]
+            top-[58%]
+            w-[18%]
+            text-navy-500
+          "
+        />
+
+        {/* ─────────────────────────────
+            Mini card
+        ───────────────────────────── */}
+
+        <MiniCard
+          className="
+            bottom-[4%]
+            left-[8%]
+            w-[27%]
+          "
+        />
+
+        {/* ─────────────────────────────
+            Bottom curved arrow
+        ───────────────────────────── */}
+
+        <DoodleArrow
+          className="
+            absolute
+            bottom-[0%]
+            left-[34%]
+            w-[22%]
+            text-navy-500
+          "
+        />
+
+        {/* ─────────────────────────────
+            Tiny floating curve
+        ───────────────────────────── */}
+
+        <DoodleCurve
+          className="
+            absolute
+            left-[46%]
+            top-[63%]
+            w-[11%]
+            text-navy-500
+          "
+        />
       </motion.div>
     </div>
   );
