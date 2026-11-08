@@ -51,7 +51,7 @@ function HeroArt({ images }: { images: HeroImages }) {
         initial={{ opacity: 0, scale: 0.96, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="relative hidden h-130 w-197.5 origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100 [&>*:not(img)]:hidden"
+        className="relative hidden h-130 w-197.5 origin-left md:block md:scale-[0.825] lg:scale-[1.2] min-[1100px]:-translate-x-[120px] min-[1100px]:scale-[1.5] [&>*:not(img)]:hidden"
       >
         <img src="/assets/41-72.svg" alt="" className="absolute inset-0 h-full w-full object-contain" />
         {/* Navy disc */}
