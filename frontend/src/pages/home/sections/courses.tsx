@@ -41,7 +41,7 @@ function Courses() {
                 <span
                   aria-label={`المرحلة ${i + 1}`}
                   dir="ltr"
-                  className="text-left font-display text-[44px] font-extrabold leading-[60px] text-white md:text-[72px] md:leading-[92px]"
+                  className="text-left font-display text-[44px] font-extrabold leading-15 text-white md:text-[72px] md:leading-23"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -49,7 +49,7 @@ function Courses() {
                   <span className="font-heading text-xl font-bold leading-8 text-white md:text-2xl md:leading-9">
                     دورة تقنية
                   </span>
-                  <span className="font-sans text-base leading-[30px] text-white">
+                  <span className="font-sans text-base leading-7.5 text-white">
                     {course.duration}
                   </span>
                 </span>
@@ -59,7 +59,7 @@ function Courses() {
                 <h3 className="font-heading text-xl font-bold leading-8 text-white md:text-2xl md:leading-9">
                   {course.title}
                 </h3>
-                <p className="mt-3.5 text-base leading-[30px] text-navy-muted">
+                <p className="mt-3.5 text-base leading-7.5 text-navy-muted">
                   {course.description}
                 </p>
               </div>

@@ -26,7 +26,7 @@ function HeroArt({ images }: { images: HeroImages }) {
   return (
     <div aria-hidden dir="ltr" className="w-full">
       {/* Mobile */}
-      <div className="relative h-[360px] md:hidden">
+      <div className="relative h-90 md:hidden">
         <PhotoFrame
           tone="ghost"
           label="Hero image"
@@ -34,7 +34,7 @@ function HeroArt({ images }: { images: HeroImages }) {
           className="absolute left-[18%] top-[12%] h-[67%] w-[74%] rounded-t-full rounded-b-none"
         />
 
-        <div className="absolute left-[8%] top-[8%] size-[74px] rounded-full bg-brand">
+        <div className="absolute left-[8%] top-[8%] size-18.5 rounded-full bg-brand">
           <Sparkle className="m-auto size-12 p-2 text-navy" />
         </div>
 
@@ -48,7 +48,7 @@ function HeroArt({ images }: { images: HeroImages }) {
         initial={{ opacity: 0, scale: 0.96, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="relative hidden h-[520px] w-[790px] origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100"
+        className="relative hidden h-130 w-197.5 origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100"
       >
         {/* Navy disc */}
         <div className="absolute left-[13.9%] top-[17.7%] aspect-square w-[42%] rounded-full bg-navy-surface" />
@@ -101,12 +101,12 @@ function HeroArt({ images }: { images: HeroImages }) {
 function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
   return (
     <section className="overflow-hidden bg-navy text-navy-foreground">
-      <Container className="grid gap-10 pt-2 pb-16 md:min-h-[760px] md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-24">
+      <Container className="grid gap-10 pt-2 pb-16 md:min-h-190 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-24">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="order-last flex flex-col items-start gap-4 md:order-none"
+          className="order-last flex flex-col items-start gap-4 md:order-0"
         >
           <motion.p
             variants={fadeUpItem}
@@ -116,13 +116,13 @@ function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
           </motion.p>
           <motion.h1
             variants={fadeUpItem}
-            className="font-display text-[44px] font-extrabold leading-[60px] text-white md:text-[72px] md:leading-[92px]"
+            className="font-display text-[44px] font-extrabold leading-15 text-white md:text-[72px] md:leading-23"
           >
             نبني مستقبلك التقني
           </motion.h1>
           <motion.p
             variants={fadeUpItem}
-            className="mt-2 max-w-[400px] text-base leading-[30px] text-navy-muted md:mt-6"
+            className="mt-2 max-w-100 text-base leading-7.5 text-navy-muted md:mt-6"
           >
             نعلّمك الخوارزميات والبرمجة، ونصمم لك موقعك وتطبيقك من الفكرة
             إلى الإطلاق.
@@ -146,7 +146,7 @@ function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
           </motion.div>
         </motion.div>
 
-        <div className="order-first md:order-none">
+        <div className="order-first md:order-0">
           <HeroArt images={images} />
         </div>
       </Container>

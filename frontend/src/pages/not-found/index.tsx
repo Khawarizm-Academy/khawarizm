@@ -10,7 +10,7 @@ function NotFoundArt() {
   return (
     <div
       aria-hidden
-      className="relative mx-auto h-[240px] w-full max-w-[380px] md:h-[340px]"
+      className="relative mx-auto h-60 w-full max-w-95 md:h-85"
     >
       <Arch className="absolute top-[6%] left-0 h-[60%] w-[34%] bg-accent" />
       <Arch className="absolute bottom-0 left-[30%] flex h-[78%] w-[38%] items-center justify-center bg-brand">

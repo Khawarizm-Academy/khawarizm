@@ -70,7 +70,7 @@ export function MiniCard({ className = "" }: { className?: string }) {
     <motion.div
       aria-hidden
       className={cn(
-        "absolute aspect-[166/87] rounded-[5px] bg-white shadow-sm",
+        "absolute aspect-166/87 rounded-[5px] bg-white shadow-sm",
         className,
       )}
       animate={{

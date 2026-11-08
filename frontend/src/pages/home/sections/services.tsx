@@ -31,7 +31,7 @@ function Services() {
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 260, damping: 22 }}
               className={cn(
-                "flex flex-col items-start rounded-md border border-border p-7 transition-shadow md:min-h-[400px] md:p-12",
+                "flex flex-col items-start rounded-md border border-border p-7 transition-shadow md:min-h-100 md:p-12",
                 i === 1
                   ? "shadow-[0_32px_64px_rgba(15,31,69,0.04)] hover:shadow-[0_32px_64px_rgba(15,31,69,0.10)]"
                   : "hover:shadow-[0_32px_64px_rgba(15,31,69,0.04)]",
@@ -43,7 +43,7 @@ function Services() {
               <h3 className="mt-10 font-heading text-xl font-bold leading-8 md:text-2xl md:leading-9">
                 {title}
               </h3>
-              <p className="mt-3.5 flex-1 text-base leading-[30px] text-muted">
+              <p className="mt-3.5 flex-1 text-base leading-7.5 text-muted">
                 {description}
               </p>
               <TextLink href={ROUTES.services} className="mt-9">

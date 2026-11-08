@@ -56,7 +56,7 @@ type PhotoFrameProps = ComponentProps<"div"> & {
   mat?: PhotoMat;
   /** Backing-plate color (`PhotoTone` above); width/size come through `className`, like every collage block. */
   tone?: PhotoTone;
-  /** `arch` = the brand signature (`rounded-t-[45%] rounded-b-[6px]`, the shaped photo blocks); `plain` = the 6px photo rectangle of the About/CTA frames. Override any radius via `className` (tailwind-merge keeps the last say, e.g. `rounded-t-[48%]`). */
+  /** `arch` = the brand signature (`rounded-t-[45%]` + `rounded-b-md`, the shaped photo blocks); `plain` = the 6px photo rectangle of the About/CTA frames. Override any radius via `className` (tailwind-merge keeps the last say, e.g. `rounded-t-[48%]`). */
   shape?: "arch" | "plain";
   /** Let the photo spill past the plate (transparent cut-outs such as the laptop, which overflows its arch). Mat values may be negative. */
   bleed?: boolean;
@@ -85,8 +85,8 @@ export function PhotoFrame({
         !bleed && "overflow-hidden",
         PHOTO_TONES[tone],
         shape === "arch"
-          ? "rounded-t-[45%] rounded-b-[6px]"
-          : "rounded-[6px]",
+          ? "rounded-t-[45%] rounded-b-md"
+          : "rounded-md",
         className,
       )}
       {...props}

@@ -27,7 +27,7 @@ function Stats() {
               </dt>
               <dd
                 dir="ltr"
-                className="text-right font-display text-[36px] font-extrabold leading-[50px] text-foreground md:text-[40px] md:leading-[56px]"
+                className="text-right font-display text-[36px] font-extrabold leading-12.5 text-foreground md:text-[40px] md:leading-14"
               >
                 {stat.value}
               </dd>

@@ -33,10 +33,10 @@ function SectionHeading({
       </p>
       <h2
         className={cn(
-          "font-display text-[36px] font-extrabold leading-[50px]",
+          "font-display text-[36px] font-extrabold leading-12.5",
           size === "lg"
-            ? "md:text-[56px] md:leading-[72px]"
-            : "md:text-[40px] md:leading-[56px]",
+            ? "md:text-[56px] md:leading-18"
+            : "md:text-[40px] md:leading-14",
           dark ? "text-white" : "text-foreground",
         )}
       >

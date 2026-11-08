@@ -70,7 +70,7 @@ function Works() {
                 aria-pressed={filter === f.id}
                 onClick={() => setFilter(f.id)}
                 className={cn(
-                  "font-sans text-base leading-[30px] transition-colors",
+                  "font-sans text-base leading-7.5 transition-colors",
                   filter === f.id ? "text-white" : "text-navy-muted hover:text-white/80",
                 )}
               >
@@ -92,7 +92,7 @@ function Works() {
                 transition={{ duration: 0.25 }}
                 whileHover={{ y: -6 }}
                 className={cn(
-                  "relative flex h-[416px] items-end overflow-hidden rounded-md bg-gradient-to-br",
+                  "relative flex h-104 items-end overflow-hidden rounded-md bg-gradient-to-br",
                   project.gradient,
                   SPANS[i % SPANS.length],
                 )}
@@ -103,7 +103,7 @@ function Works() {
                   <span className="rounded-full bg-surface px-5 py-1 font-sans text-base text-foreground">
                     {KIND_LABELS[project.kind]}
                   </span>
-                  <h3 className="font-display text-[36px] font-extrabold leading-[50px] text-white md:text-[40px] md:leading-[56px]">
+                  <h3 className="font-display text-[36px] font-extrabold leading-12.5 text-white md:text-[40px] md:leading-14">
                     {project.title}
                   </h3>
                 </div>

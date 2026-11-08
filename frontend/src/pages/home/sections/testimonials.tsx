@@ -32,7 +32,7 @@ function TestimonialCard({ testimonial: t, index }: {
       )}
     >
       <Rating label="تقييم 5 من 5" />
-      <blockquote className="mt-8 flex-1 text-base leading-[30px] text-muted">
+      <blockquote className="mt-8 flex-1 text-base leading-7.5 text-muted">
         {t.quote}
       </blockquote>
       <div className="mt-8 flex items-center gap-5">

@@ -31,7 +31,7 @@ function FooterColumn({ title, items }: { title: string; items: NavItem[] }) {
           <li key={item.label}>
             <a
               href={item.href}
-              className="font-sans text-base leading-[30px] text-foreground transition-colors hover:text-brand-ink"
+              className="font-sans text-base leading-7.5 text-foreground transition-colors hover:text-brand-ink"
             >
               {item.label}
             </a>
@@ -75,7 +75,7 @@ function Footer() {
       <Container className="mt-14 pb-10 md:mt-24">
         <div className="border-t border-border pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="font-sans text-base leading-[30px] text-muted">
+            <p className="font-sans text-base leading-7.5 text-muted">
               © {new Date().getFullYear()} أكاديمية {SITE.name}. جميع الحقوق
               محفوظة.
             </p>
@@ -85,7 +85,7 @@ function Footer() {
                   <a
                     href={item.href}
                     className={cn(
-                      "font-sans text-base leading-[30px] text-foreground",
+                      "font-sans text-base leading-7.5 text-foreground",
                       "transition-colors hover:text-brand-ink",
                     )}
                   >

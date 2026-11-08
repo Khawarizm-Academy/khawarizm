@@ -18,7 +18,7 @@ export function TextLink({
     <a
       {...props}
       className={cn(
-        "group inline-flex cursor-pointer items-center gap-2 text-base leading-[30px]",
+        "group inline-flex cursor-pointer items-center gap-2 text-base leading-7.5",
         "text-start underline-offset-4 hover:underline",
         className,
       )}

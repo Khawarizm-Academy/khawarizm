@@ -16,9 +16,9 @@ export function Logo({ className }: { className?: string }) {
     >
       <span
         aria-hidden
-        className="grid size-12 shrink-0 place-items-center border-[5px] border-brand"
+        className="grid size-12 shrink-0 place-items-center border-5 border-brand"
       >
-        <span className="size-[19px] bg-brand" />
+        <span className="size-4.75 bg-brand" />
       </span>
       {SITE.name}
     </Link>

@@ -7,12 +7,12 @@ import { cn } from "@/lib/utils";
 /** About collage per Figma: sand card + brown square above, triple-avatar chip, main photo, gold medal w/ portrait; 1 photo on mobile. */
 function AboutArt() {
   return (
-    <div aria-hidden className="mx-auto w-full max-w-[570px]">
+    <div aria-hidden className="mx-auto w-full max-w-142.5">
       {/* Mobile: single image block. */}
-      <Portrait className="h-[340px] w-full rounded-none md:hidden" />
+      <Portrait className="h-85 w-full rounded-none md:hidden" />
 
       {/* Desktop: decorative composition (570×570 frame geometry). */}
-      <div className="relative hidden h-[540px] md:block">
+      <div className="relative hidden h-135 md:block">
         {/* cream card, then brown backdrop square (per source z-order) */}
         <div className="absolute top-0 left-[12%] h-[56%] w-[67%] rounded-md bg-sand" />
         <div className="absolute top-[11%] left-[3%] h-[29%] w-[34%] bg-border-strong" />
@@ -48,7 +48,7 @@ function About() {
           <p className="mt-2 text-xl leading-9 text-foreground">
             نعلّم البرمجة ونبني المنتجات الرقمية
           </p>
-          <p className="max-w-[470px] text-base leading-[30px] text-muted">
+          <p className="max-w-117.5 text-base leading-7.5 text-muted">
             خوارزم أكاديمية تقنية عربية تعلّم الشباب الخوارزميات والبرمجة،
             وتقدّم خدمات تصميم المواقع وتطوير التطبيقات. اسمنا مستوحى من
             العالم الخوارزمي، وهدفنا أن نحوّل شغفك التقني إلى مهارة ومشروع.
