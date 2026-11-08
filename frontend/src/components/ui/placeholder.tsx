@@ -1,10 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Ghosted box standing in for a Figma photo until the real assets
- * land: soft navy surface + centered caption. Pair it with a shaped
- * parent (arch / arch-topped block) and use `bg-transparent` on the
- * inset to keep only the label visible. `Portrait` covers the
- * gradient-block flavor of the same idea. */
+/** Ghosted box standing in for a Figma photo until the real assets land: soft navy surface + centered caption. Pair it with a shaped parent (arch / arch-topped block) and use `bg-transparent` on the inset to keep only the label visible. `Portrait` covers the gradient-block flavor of the same idea. */
 export function ImagePlaceholder({
   className,
   label,

@@ -3,9 +3,7 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { pageTransitionProps } from "./variants";
 
-/** Animated container for any block that should enter/exit like a page
- * (tabs, panels, non-router swaps). The router transition itself lives in
- * RootLayout via AnimatePresence + useOutlet. */
+/** Animated container for page-like enter/exit (tabs, panels, non-router swaps); the router transition lives in RootLayout. */
 export function PageTransition({
   children,
   className,

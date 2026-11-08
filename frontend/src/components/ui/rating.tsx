@@ -9,8 +9,7 @@ type RatingProps = {
   className?: string;
 };
 
-/** Row of gold rating stars — the 24px `--shape-gold` squares of the
- * Figma testimonial cards, drawn with the real star glyph. */
+/** Row of gold rating stars — the 24px `--shape-gold` squares of the Figma testimonial cards, drawn with the real star glyph. */
 export function Rating({ count = 5, label, className }: RatingProps) {
   return (
     <p role="img" aria-label={label} className={cn("flex gap-2", className)}>

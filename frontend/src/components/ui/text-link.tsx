@@ -7,9 +7,7 @@ type TextLinkProps = ComponentProps<"a"> & {
   tone?: "light" | "dark";
 };
 
-/** The Figma contexts' plain "اعرف المزيد" link. In code it gains a
- * subtle sliding arrow on hover. The arrow points LEFT because the
- * site is RTL — left is the reading direction. */
+/** The Figma contexts' plain "اعرف المزيد" link. In code it gains a subtle sliding arrow on hover. The arrow points LEFT because the site is RTL — left is the reading direction. */
 export function TextLink({
   className,
   tone = "light",

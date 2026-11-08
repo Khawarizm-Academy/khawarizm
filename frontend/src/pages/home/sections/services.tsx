@@ -16,8 +16,7 @@ function Services() {
           eyebrow="ما نقدمه"
           title="كل ما تحتاجه لرحلتك التقنية"
         />
-        {/* Three separate bordered cards (400px tall in Figma); the
-            middle "تصميم المواقع" card carries the featured shadow. */}
+        {/* Three separate bordered cards (400px tall in Figma); the middle "تصميم المواقع" card carries the featured shadow. */}
         <motion.ul
           variants={staggerContainer}
           initial="hidden"

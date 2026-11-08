@@ -6,8 +6,7 @@ type SectionHeadingProps = {
   /** `dark` = on a navy section. */
   tone?: "light" | "dark";
   align?: "start" | "center";
-  /** Big Figma H2s are 56/72 on desktop; the services H2 is a smaller
-   * 40/56 ("md"). Both are 36/50 on mobile. */
+  /** Big Figma H2s are 56/72 on desktop; the services H2 is a smaller 40/56 ("md"). Both are 36/50 on mobile. */
   size?: "lg" | "md";
   className?: string;
 };

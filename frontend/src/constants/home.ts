@@ -11,17 +11,13 @@ import type {
   Testimonial,
 } from "@/types";
 
-/** Hero collage cut-outs for the two arch frames (transparent PNGs),
- * wired as `Hero → HeroArt → PhotoFrame` — the Vite import hashes the
- * URL at build time. */
+/** Hero collage cut-outs (transparent PNGs) wired as `Hero → HeroArt → PhotoFrame` — Vite import hashes the URL at build time. */
 export const HERO_IMAGES: HeroImages = {
   laptop: heroLaptop,
   portrait: heroPortrait,
 };
 
-/* ⚠️ Sample content — numbers, project names, course details and
- * testimonials are placeholders written for the layout. Replace with
- * the academy's real data before launch. */
+/* ⚠️ Sample content — numbers, project names, courses, testimonials are placeholders; replace with real data before launch. */
 
 export const STATS: Stat[] = [
   { value: "1200+", label: "عدد الطلاب" },

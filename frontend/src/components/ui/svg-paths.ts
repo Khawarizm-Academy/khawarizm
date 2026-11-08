@@ -1,9 +1,4 @@
-/** Pure SVG geometry for the Khawarizm doodle ornaments — the
- * hand-drawn paths transcribed from the Figma frames.
- *
- * Data only (no JSX): the components in `./doodles.tsx` read from
- * here, so the drawings live in one dedicated place and stay
- * reusable wherever the doodles are dropped into a layout. */
+/** Pure SVG geometry for the Khawarizm doodles — hand-drawn Figma paths. Data only (no JSX): read by `./doodles.tsx`, keeping the drawings in one reusable place. */
 
 /** Curly cloud-brain: one continuous outline with inward curls. */
 export const BRAIN_DOODLE = {

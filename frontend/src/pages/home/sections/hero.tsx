@@ -17,21 +17,11 @@ import { HOME_ANCHORS } from "@/router/routes";
 import type { HeroImages } from "@/types";
 import { cn } from "@/lib/utils";
 
-/** Doodle ink sampled from the Figma frame: `#6d82b5` for the
- * hand-drawn marks, the dimmer `#35508f` for the burst. */
+// Doodle ink from the Figma frame — marks `#6d82b5`, dimmer burst `#35508f`.
 const INK = "text-[#6d82b5]";
 const INK_DIM = "text-[#35508f]";
 
-/** Hero collage, matched to the Figma hero frame (1127 px wide).
- * Desktop is a fixed 790 × 520 canvas whose offsets are percentages
- * measured from that frame: navy disc, blue laptop arch, gold sparkle
- * disc, brain + burst doodles, gold portrait arch, swirl arrow, mini
- * card and the low arrow. Images arrive through `images` and flow
- * `Hero → HeroArt → PhotoFrame`; an empty path keeps the ghosted
- * placeholder. The laptop is a transparent cut-out that overflows
- * its arch (`bleed`), like the design. The canvas is LTR so it grows
- * toward the text column, as in the frame. Mobile collapses to one
- * photo block. */
+/** Hero collage from the Figma hero frame: fixed 790 × 520 desktop canvas (LTR) whose %-offsets are scaled ×1.15 (centers pinned), plus a one-photo mobile block; `images` flows `Hero → HeroArt → PhotoFrame`, empty paths keep ghosted placeholders. */
 function HeroArt({ images }: { images: HeroImages }) {
   return (
     <div aria-hidden dir="ltr" className="w-full">
@@ -41,16 +31,16 @@ function HeroArt({ images }: { images: HeroImages }) {
           tone="ghost"
           label="Hero image"
           mat={false}
-          className="absolute left-[18%] top-[12%] h-[58%] w-[64%] rounded-t-full rounded-b-none"
+          className="absolute left-[18%] top-[12%] h-[67%] w-[74%] rounded-t-full rounded-b-none"
         />
 
-        <div className="absolute left-[8%] top-[8%] size-16 rounded-full bg-brand">
-          <Sparkle className="m-auto size-10 p-2 text-navy" />
+        <div className="absolute left-[8%] top-[8%] size-[74px] rounded-full bg-brand">
+          <Sparkle className="m-auto size-12 p-2 text-navy" />
         </div>
 
-        <BrainDoodle className="absolute right-[4%] top-[8%] w-20 text-navy-500" />
+        <BrainDoodle className="absolute right-[4%] top-[8%] w-24 text-navy-500" />
 
-        <MiniCard className="bottom-[5%] left-[10%] w-[42%]" />
+        <MiniCard className="bottom-[5%] left-[10%] w-[48%]" />
       </div>
 
       {/* Desktop */}
@@ -61,7 +51,7 @@ function HeroArt({ images }: { images: HeroImages }) {
         className="relative hidden h-[520px] w-[790px] origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100"
       >
         {/* Navy disc */}
-        <div className="absolute left-[16.6%] top-[21.9%] aspect-square w-[36.5%] rounded-full bg-navy-surface" />
+        <div className="absolute left-[13.9%] top-[17.7%] aspect-square w-[42%] rounded-full bg-navy-surface" />
 
         {/* Blue arch + laptop cut-out (spills past the arch on the right) */}
         <PhotoFrame
@@ -71,21 +61,21 @@ function HeroArt({ images }: { images: HeroImages }) {
           bleed
           fit="contain"
           mat={{ left: "8.4%", right: "-12.6%", top: "7.6%", bottom: "5.1%" }}
-          className="absolute left-[6.7%] top-[6.9%] h-[45.6%] w-[24.2%] rounded-t-[46%]"
+          className="absolute left-[4.9%] top-[3.5%] h-[52.4%] w-[27.8%] rounded-t-[46%]"
         />
 
         {/* Gold sparkle disc */}
         <motion.div
-          className="absolute left-[36.7%] top-[12.8%] flex aspect-square w-[11%] items-center justify-center rounded-full bg-brand"
+          className="absolute left-[35.9%] top-[11.5%] flex aspect-square w-[12.6%] items-center justify-center rounded-full bg-brand"
           animate={{ y: [0, -7, 0] }}
           transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
         >
           <Sparkle className="w-[39%] text-navy" />
         </motion.div>
 
-        <BrainDoodle className={cn("absolute left-[51.8%] top-[18.5%] w-[11.4%]", INK)} />
+        <BrainDoodle className={cn("absolute left-[50.9%] top-[17.5%] w-[13.1%]", INK)} />
 
-        <BurstDoodle className={cn("absolute left-[72.3%] top-[13.1%] w-[14.4%]", INK_DIM)} />
+        <BurstDoodle className={cn("absolute left-[71.1%] top-[11.5%] w-[16.6%]", INK_DIM)} />
 
         {/* Gold arch portrait (cut-out sits inside the arch) */}
         <PhotoFrame
@@ -94,22 +84,20 @@ function HeroArt({ images }: { images: HeroImages }) {
           label="Portrait image"
           fit="contain"
           mat={{ left: "3%", right: "1.5%", top: "16.8%", bottom: "4.6%" }}
-          className="absolute left-[38.7%] top-[35.2%] h-[45.8%] w-[24.2%] rounded-t-[48%]"
+          className="absolute left-[36.9%] top-[31.8%] h-[52.7%] w-[27.8%] rounded-t-[48%]"
         />
 
-        <DoodleSquiggle className={cn("absolute left-[6.5%] top-[57.9%] w-[14.2%]", INK)} />
+        <DoodleSquiggle className={cn("absolute left-[5.4%] top-[57.1%] w-[16.3%]", INK)} />
 
-        <MiniCard className="left-[12.3%] top-[71.5%] w-[21%]" />
+        <MiniCard className="left-[10.7%] top-[70.2%] w-[24.2%]" />
 
-        <DoodleArrow className={cn("absolute left-[37.6%] top-[88.3%] w-[9.4%]", INK)} />
+        <DoodleArrow className={cn("absolute left-[36.9%] top-[87.9%] w-[10.8%]", INK)} />
       </motion.div>
     </div>
   );
 }
 
-/** Hero content lives in `@/constants/home`; images are optional
- * paths that default to `HERO_IMAGES` (empty paths render the ghosted
- * placeholders). */
+/** Hero content lives in `@/constants/home`; `images` defaults to `HERO_IMAGES`, where empty paths render ghosted placeholders. */
 function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
   return (
     <section className="overflow-hidden bg-navy text-navy-foreground">

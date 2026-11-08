@@ -11,8 +11,7 @@ import type { ProjectKind } from "@/types";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/router/routes";
 
-/** Column spans repeat 5/7 · 7/5 on a 12-col grid (static strings so
- * Tailwind can see them). Mobile stacks full-width. */
+/** Column spans repeat 5/7 · 7/5 on a 12-col grid (static strings so Tailwind can see them). Mobile stacks full-width. */
 const SPANS = [
   "md:col-span-5",
   "md:col-span-7",
@@ -36,8 +35,7 @@ function Works() {
           title="أحدث الأعمال"
         />
 
-        {/* Mobile filter — the Figma mobile design swaps the tabs for a
-            dropdown field (48px, white with gold hairline). */}
+        {/* Mobile filter — the Figma mobile design swaps the tabs for a dropdown field (48px, white with gold hairline). */}
         <select
           value={filter}
           onChange={(e) => setFilter(e.currentTarget.value as Filter)}
@@ -51,8 +49,7 @@ function Works() {
           ))}
         </select>
 
-        {/* Desktop filter — plain text tabs separated by Arabic dot
-            glyphs; the active tab is plain white. */}
+        {/* Desktop filter — plain text tabs separated by Arabic dot glyphs; the active tab is plain white. */}
         <div
           role="group"
           aria-label="تصفية الأعمال"

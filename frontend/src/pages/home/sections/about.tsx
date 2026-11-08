@@ -4,11 +4,7 @@ import { Portrait, SectionHeading, buttonVariants } from "@/components/ui";
 import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
-/** About collage — the Figma frame's geometry: sand card + brown
- * square (painted above it, as the source layers stack) with a
- * floating triple-avatar chip on top, a main photo block, and a gold
- * medal holding a smaller portrait at the bottom left. Collapses to a
- * single photo block on mobile, like the mobile frame. */
+/** About collage per Figma: sand card + brown square above, triple-avatar chip, main photo, gold medal w/ portrait; 1 photo on mobile. */
 function AboutArt() {
   return (
     <div aria-hidden className="mx-auto w-full max-w-[570px]">
@@ -39,8 +35,7 @@ function AboutArt() {
 function About() {
   return (
     <section id="about" className="bg-background pt-8 pb-16 md:pt-36 md:pb-24">
-      {/* Art first in the DOM: top on mobile (Figma mobile shows the
-          image first), right column on desktop (RTL grid). */}
+      {/* Art first in the DOM: top on mobile (Figma mobile shows the image first), right column on desktop (RTL grid). */}
       <Container className="grid items-center gap-12 md:grid-cols-2 md:gap-14">
         <FadeIn>
           <AboutArt />

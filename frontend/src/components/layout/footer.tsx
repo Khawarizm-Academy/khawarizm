@@ -42,9 +42,7 @@ function FooterColumn({ title, items }: { title: string; items: NavItem[] }) {
   );
 }
 
-/** Cream footer: wordmark + two link columns + gold social circles on
- * one row (stacked and centered on mobile), then a divider and legal
- * bar. */
+/** Cream footer: wordmark + two link columns + gold social circles on one row (stacked and centered on mobile), then a divider and legal bar. */
 function Footer() {
   return (
     <footer className="bg-background pt-16 md:pt-24">

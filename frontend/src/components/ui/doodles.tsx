@@ -9,11 +9,7 @@ import {
   SPARKLE,
 } from "./svg-paths";
 
-/** Hand-drawn SVG ornaments rendered from `./svg-paths.ts`. Each one
- * carries its own gentle idle loop (float / sway / twinkle), is
- * decorative (`aria-hidden`), draws with `currentColor`, and takes
- * sizing + position through `className` — drop them anywhere with
- * plain Tailwind utility strings. */
+/** Hand-drawn SVG ornaments rendered from `./svg-paths.ts`: gentle idle loops (float/sway/twinkle), decorative (`aria-hidden`), drawn with `currentColor`, styled via `className`. */
 
 type DoodleProps = {
   className?: string;
@@ -25,8 +21,7 @@ const OUTLINE_STROKE = {
   strokeLinecap: "round",
 } as const;
 
-/** Four-point star (+ two satellite sparks), filled — sits on the gold
- * disc and sparkles on its own. */
+/** Four-point star (+ two satellite sparks), filled — sits on the gold disc and sparkles on its own. */
 export function Sparkle({ className }: DoodleProps) {
   return (
     <motion.svg
@@ -79,8 +74,7 @@ export function BrainDoodle({ className }: DoodleProps) {
   );
 }
 
-/** 13-spike star-burst — sways ±5° slowly. The organic
- * counterpart of the generated `Burst` in `shapes.tsx`. */
+/** 13-spike star-burst — sways ±5° slowly. The organic counterpart of the generated `Burst` in `shapes.tsx`. */
 export function BurstDoodle({ className }: DoodleProps) {
   return (
     <motion.svg
@@ -170,8 +164,7 @@ export function DoodleCurve({ className }: DoodleProps) {
   );
 }
 
-/** Single swoosh "wire" — fades in and out, used to tie a device
- * block into the collage. */
+/** Single swoosh "wire" — fades in and out, used to tie a device block into the collage. */
 export function DoodleConnector({ className }: DoodleProps) {
   return (
     <motion.svg

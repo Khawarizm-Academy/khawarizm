@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils";
 import { ROUTES } from "@/router/routes";
 import type { Testimonial } from "@/types";
 
-/* Figma masonry quirks: every card keeps its own 1px gold border; only
-   some corners are rounded, and the first (top-right) card is solid
-   white with a soft shadow. */
+/* Figma masonry quirks: 1px gold border per card, partial corner rounding, first (top-right) card white w/ soft shadow. */
 const CARD_CORNER: Record<number, string> = {
   0: "rounded-t-md md:rounded-tr-none md:rounded-bl-none md:rounded-br-none",
   1: "rounded-md md:rounded-tl-none md:rounded-bl-none md:rounded-br-none",
@@ -67,8 +65,7 @@ function Testimonials() {
           title="ماذا يقول عنا عملاؤنا"
         />
 
-        {/* Flush 2×2 masonry (zero gaps in the design); the cards rise
-            in one after another on scroll. */}
+        {/* Flush 2×2 masonry (zero gaps in the design); the cards rise in one after another on scroll. */}
         <motion.ul
           variants={staggerContainer}
           initial="hidden"

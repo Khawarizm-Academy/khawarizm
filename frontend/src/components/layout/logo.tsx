@@ -3,9 +3,7 @@ import { cn } from "@/lib/utils";
 import { ROUTES } from "@/router/routes";
 import { SITE } from "@/constants/site";
 
-/** Wordmark from the Figma brand lockup: a gold-framed square with a
- * solid gold core, next to the (Readex Pro) wordmark. Swap the frame
- * for the final logo asset here only when the SVG file arrives. */
+/** Wordmark from the Figma brand lockup: a gold-framed square with a solid gold core, next to the (Readex Pro) wordmark. Swap the frame for the final logo asset here only when the SVG file arrives. */
 export function Logo({ className }: { className?: string }) {
   return (
     <Link

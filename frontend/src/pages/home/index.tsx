@@ -7,9 +7,7 @@ import { Stats } from "./sections/stats";
 import { Testimonials } from "./sections/testimonials";
 import { Works } from "./sections/works";
 
-/** Home: indigo hero → cream about/stats/services → indigo works +
- * courses band → cream testimonials/CTA. Section code lives in
- * `./sections`, content in `@/constants/home`. */
+/** Home: hero → about/stats/services → works/courses → testimonials/CTA. Code in `./sections`, content in `@/constants/home`. */
 function HomePage() {
   return (
     <>

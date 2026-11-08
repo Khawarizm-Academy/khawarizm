@@ -3,16 +3,14 @@ import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
-/** Decorative arch (rounded-top block): the identity shape of the
- * Khawarizm artwork. Always hidden from assistive tech. */
+/** Decorative arch (rounded-top block): the identity shape of the Khawarizm artwork. Always hidden from assistive tech. */
 export function Arch({ className, ...props }: ComponentProps<"div">) {
   return (
     <div aria-hidden className={cn("rounded-t-full", className)} {...props} />
   );
 }
 
-/** Outlined star-burst, drawn with `currentColor`. The Khawarizm
- * signature ornament — spin it with `motion-safe:animate-rotate-slow`. */
+/** Outlined star-burst, drawn with `currentColor`. The Khawarizm signature ornament — spin it with `motion-safe:animate-rotate-slow`. */
 export function Burst({
   className,
   points = 16,
@@ -43,9 +41,7 @@ type PortraitProps = ComponentProps<"div"> & {
   icon?: typeof User;
 };
 
-/** Rounded portrait block standing in for a Figma photo placeholder:
- * blue-toned surface with a ghosted pictogram at its base. Pass
- * `rounded-t-full` to turn it into one of the brand arches. */
+/** Rounded portrait block standing in for a Figma photo placeholder: blue-toned surface with a ghosted pictogram at its base. Pass `rounded-t-full` to turn it into one of the brand arches. */
 export function Portrait({
   className,
   icon: Icon = User,
@@ -68,10 +64,7 @@ export function Portrait({
   );
 }
 
-/** White profile card from the hero collage: gold avatar dot + four
- * skeleton bars. Everything inside is placed in percentages of a fixed
- * 166 × 87 ratio (measured from the Figma frame), so it scales with
- * the collage. Floats on a slow idle loop. */
+/** White profile card from the hero collage: gold avatar dot + four skeleton bars. Everything inside is placed in percentages of a fixed 166 × 87 ratio (measured from the Figma frame), so it scales with the collage. Floats on a slow idle loop. */
 export function MiniCard({ className = "" }: { className?: string }) {
   return (
     <motion.div
@@ -99,8 +92,7 @@ export function MiniCard({ className = "" }: { className?: string }) {
   );
 }
 
-/** White card with a mini bar chart, lifted from the gold CTA
- * artwork (`--gold-100` bars + gold avatar dot). */
+/** White card with a mini bar chart, lifted from the gold CTA artwork (`--gold-100` bars + gold avatar dot). */
 export function ChartCard({ className }: { className?: string }) {
   return (
     <div

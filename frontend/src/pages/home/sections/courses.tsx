@@ -6,10 +6,7 @@ import { COURSES } from "@/constants/home";
 import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
-/** Continues the navy band started by Works. Card anatomy from the
- * Figma: big white index number beside a "دورة تقنية" caption +
- * duration, hairline divider, then course name / summary / link.
- * Cards rise in one after another and lift a little while hovered. */
+/** Navy band continuing Works. Card (Figma): index number + "دورة تقنية" + duration, divider, name/summary/link; stagger in, hover-lift. */
 function Courses() {
   return (
     <section

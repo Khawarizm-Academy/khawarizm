@@ -10,11 +10,7 @@ import {
 import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
-/** CTA collage (Figma gold band): rotated blue square, deep-gold disc,
- * a portrait block and a floating white chart card — plus the identity
- * ornaments from the earlier design, restored: a blue sparkle dot and
- * a ghosted star-burst. On mobile it collapses to the single photo
- * block from the mobile design. */
+/** CTA collage (Figma gold band): rotated blue square, gold disc, portrait, floating chart card, sparkle dot + star-burst; 1 photo on mobile. */
 function CtaArt() {
   return (
     <div aria-hidden className="mx-auto w-full max-w-[430px]">
@@ -47,8 +43,7 @@ function Cta() {
   return (
     <section id="contact" className="bg-background pb-16 md:pb-24">
       <Container>
-        {/* Content is first in the DOM → right column on desktop (grid
-          is RTL); the art is raised above it only on mobile. */}
+        {/* Content is first in the DOM → right column on desktop (grid is RTL); the art is raised above it only on mobile. */}
         <div className="grid gap-10 rounded-md bg-brand px-6 py-10 md:grid-cols-2 md:items-center md:gap-12 md:px-16 md:py-24">
           <FadeIn
             className="order-last flex flex-col items-start gap-6 md:order-none md:gap-8"

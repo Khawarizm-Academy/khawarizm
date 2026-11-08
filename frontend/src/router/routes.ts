@@ -1,9 +1,7 @@
-/** Central route path registry — keeps <Link to>, redirects and the
- * route config in sync. */
+/** Central route path registry — keeps <Link to>, redirects and the route config in sync. */
 export const ROUTES = {
   home: "/",
-  /** Pages below are planned: the links exist, the pages come next
-   * (until then the router shows the 404 page). */
+  /** Pages below are planned: links exist, pages come next (until then the router shows the 404 page). */
   about: "/about",
   services: "/services",
   works: "/works",
@@ -12,8 +10,7 @@ export const ROUTES = {
   notFound: "*",
 } as const;
 
-/** In-page anchors on the Home page. Use plain <a href>, not <Link>,
- * so the browser handles the hash scroll from any route. */
+/** In-page anchors on the Home page. Use plain <a href>, not <Link>, so the browser hash-scrolls from any route. */
 export const HOME_ANCHORS = {
   about: "/#about",
   services: "/#services",
