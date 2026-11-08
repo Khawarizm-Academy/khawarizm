@@ -15,10 +15,11 @@ function CtaArt() {
   return (
     <div aria-hidden className="mx-auto w-full max-w-107.5">
       {/* Mobile: single image block. */}
-      <Portrait className="h-66 w-full max-w-68.25 rounded-none md:hidden" />
+      <img src="/assets/41-696.svg" alt="" className="h-66 w-full max-w-68.25 object-contain md:hidden" />
 
       {/* Desktop: decorative composition (430×430 frame geometry). */}
-      <div className="relative hidden h-107.5 md:block">
+      <div className="relative hidden h-107.5 md:block [&>*:not(img)]:hidden">
+        <img src="/assets/41-696.svg" alt="" className="absolute inset-0 h-full w-full object-contain" />
         <div className="absolute left-[4.5%] top-0 aspect-square w-[34%] rotate-13 bg-blue-300" />
         <div className="absolute bottom-0 left-[13%] aspect-square w-[74%] rounded-full bg-brand-hover" />
         <Portrait className="absolute top-[19%] left-[43%] h-[65%] w-[57%]" />

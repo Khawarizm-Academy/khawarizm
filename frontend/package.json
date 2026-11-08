@@ -8,11 +8,11 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "bunx --bun vite",
-    "build": "tsc -b && bunx --bun vite build",
-    "typecheck": "bunx tsc -b",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
     "lint": "eslint .",
-    "preview": "bunx --bun vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

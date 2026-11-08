@@ -9,10 +9,11 @@ function AboutArt() {
   return (
     <div aria-hidden className="mx-auto w-full max-w-142.5">
       {/* Mobile: single image block. */}
-      <Portrait className="h-85 w-full rounded-none md:hidden" />
+      <img src="/assets/41-113.svg" alt="" className="h-85 w-full object-contain md:hidden" />
 
       {/* Desktop: decorative composition (570×570 frame geometry). */}
-      <div className="relative hidden h-135 md:block">
+      <div className="relative hidden h-135 md:block [&>*:not(img)]:hidden">
+        <img src="/assets/41-113.svg" alt="" className="absolute inset-0 h-full w-full object-contain" />
         {/* cream card, then brown backdrop square (per source z-order) */}
         <div className="absolute top-0 left-[12%] h-[56%] w-[67%] rounded-md bg-sand" />
         <div className="absolute top-[11%] left-[3%] h-[29%] w-[34%] bg-border-strong" />

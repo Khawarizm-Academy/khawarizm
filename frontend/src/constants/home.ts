@@ -20,9 +20,9 @@ export const HERO_IMAGES: HeroImages = {
 /* ⚠️ Sample content — numbers, project names, courses, testimonials are placeholders; replace with real data before launch. */
 
 export const STATS: Stat[] = [
-  { value: "1200+", label: "عدد الطلاب" },
-  { value: "60+", label: "عدد المشاريع" },
-  { value: "4", label: "عدد الخدمات" },
+  { value: "[00]", label: "عدد الطلاب" },
+  { value: "[00]", label: "عدد المشاريع" },
+  { value: "[00]", label: "عدد الخدمات" },
 ];
 
 export const SERVICES: Service[] = [
@@ -61,75 +61,79 @@ export const KIND_LABELS: Record<ProjectKind, string> = {
 
 export const PROJECTS: Project[] = [
   {
-    id: "attendance-app",
-    title: "تطبيق متابعة الطلاب",
+    id: "project-one",
+    title: "[اسم المشروع]",
     kind: "app",
+    image: "/assets/41-307.webp",
     gradient: "from-[#d9cfc4] via-[#c9bdb0] to-[#a99d92]",
   },
   {
-    id: "institute-site",
-    title: "موقع معهد الريادة",
+    id: "project-two",
+    title: "[اسم المشروع]",
     kind: "website",
+    image: "/assets/41-316.webp",
     gradient: "from-[#7f95d8] via-[#c28fb4] to-[#e7a58f]",
   },
   {
-    id: "exam-platform",
-    title: "منصة الاختبارات الإلكترونية",
+    id: "project-three",
+    title: "[اسم المشروع]",
     kind: "website",
+    image: "/assets/41-325.webp",
     gradient: "from-[#9d8fd0] via-[#c7a0c9] to-[#e6b8a8]",
   },
   {
-    id: "coffee-brand",
-    title: "هوية مرئية لمتجر قهوة",
+    id: "project-four",
+    title: "[اسم المشروع]",
     kind: "other",
+    image: "/assets/41-334.webp",
     gradient: "from-[#b9b1a8] via-[#a39a90] to-[#8b8279]",
   },
 ];
 
 export const COURSES: Course[] = [
   {
-    title: "أساسيات البرمجة بلغة JavaScript",
-    level: "للمبتدئين",
-    duration: "8 أسابيع",
-    description: "تتعلم المتغيرات والدوال والخوارزميات الأساسية بتمارين تطبيقية.",
+    title: "[اسم الدورة ١]",
+    level: "دورة تقنية",
+    duration: "[مدة الدورة]",
+    description: "[وصف مختصر للدورة]",
   },
   {
-    title: "تطوير الواجهات باستخدام React",
-    level: "مستوى متوسط",
-    duration: "10 أسابيع",
-    description: "تبني واجهات تفاعلية بمكوّنات قابلة لإعادة الاستخدام وإدارة للحالة.",
+    title: "[اسم الدورة ٢]",
+    level: "دورة تقنية",
+    duration: "[مدة الدورة]",
+    description: "[وصف مختصر للدورة]",
   },
   {
-    title: "بناء تطبيقات الويب المتكاملة",
-    level: "مستوى متقدم",
-    duration: "12 أسبوعًا",
-    description: "تربط الواجهة بالخادم وقاعدة البيانات وتنشر مشروعك على الإنترنت.",
+    title: "[اسم الدورة ٣]",
+    level: "دورة تقنية",
+    duration: "[مدة الدورة]",
+    description: "[وصف مختصر للدورة]",
   },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    quote:
-      "شرح الخوارزميات كان مبسّطًا جدًا، وخرجت من الدورة بمشروع حقيقي أضفته إلى سيرتي الذاتية.",
-    name: "أحمد السالم",
-    role: "طالب في دورة React",
+    quote: "[نص رأي مؤقت]",
+    name: "[اسم العميل]",
+    role: "[الجهة / الدورة]",
+    avatar: "/assets/41-452.webp",
   },
   {
-    quote:
-      "سلّمونا الموقع قبل الموعد، وكان التصميم أفضل مما تخيلنا. التواصل معهم سهل وواضح.",
-    name: "نورة العتيبي",
-    role: "مديرة معهد تدريب",
+    quote: "[نص رأي مؤقت]",
+    name: "[اسم العميل]",
+    role: "[الجهة / الدورة]",
+    avatar: "/assets/41-463.webp",
   },
   {
-    quote:
-      "المدرّبون يتابعون كل طالب على حدة. شعرت أن الدورة مصمّمة لي أنا.",
-    name: "خالد الحربي",
-    role: "طالب في دورة JavaScript",
+    quote: "[نص رأي مؤقت]",
+    name: "[اسم العميل]",
+    role: "[الجهة / الدورة]",
+    avatar: "/assets/41-474.webp",
   },
   {
-    quote:
-      "حوّلوا فكرة تطبيقنا إلى منتج يعمل في أسابيع، مع شرح لكل خطوة اتخذوها.",
-    name: "ريم القحطاني",
-    role: "مؤسسة شركة ناشئة",
+    quote: "[نص رأي مؤقت]",
+    name: "[اسم العميل]",
+    role: "[الجهة / الدورة]",
+    avatar: "/assets/41-485.webp",
   },
 ];

@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Container } from "@/components/layout";
 import { fadeUpItem, staggerContainer } from "@/components/motion";
-import { Rating, SectionHeading, buttonVariants } from "@/components/ui";
+import { SectionHeading, buttonVariants } from "@/components/ui";
 import { TESTIMONIALS } from "@/constants/home";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/router/routes";
@@ -31,17 +31,18 @@ function TestimonialCard({ testimonial: t, index }: {
           "bg-surface shadow-[0_32px_64px_rgba(15,31,69,0.04)]",
       )}
     >
-      <Rating label="تقييم 5 من 5" />
+      <img src={`/assets/${["41-445.svg", "41-456.svg", "41-467.svg", "41-478.svg"][index]}`} alt="تقييم 5 من 5" className="h-6 w-38 object-contain object-right" />
       <blockquote className="mt-8 flex-1 text-base leading-7.5 text-muted">
         {t.quote}
       </blockquote>
       <div className="mt-8 flex items-center gap-5">
-        <span
-          aria-hidden
-          className="flex size-16 shrink-0 items-center justify-center rounded-full bg-navy-surface font-display text-2xl font-extrabold text-white md:size-20"
-        >
-          {t.name.charAt(0)}
-        </span>
+        {t.avatar ? (
+          <img src={t.avatar} alt="" className="size-16 shrink-0 rounded-full object-cover md:size-20" />
+        ) : (
+          <span aria-hidden className="flex size-16 shrink-0 items-center justify-center rounded-full bg-navy-surface font-display text-2xl font-extrabold text-white md:size-20">
+            {t.name.charAt(0)}
+          </span>
+        )}
         <div>
           <p className="font-heading text-xl font-bold leading-8 md:text-2xl md:leading-9">
             {t.name}

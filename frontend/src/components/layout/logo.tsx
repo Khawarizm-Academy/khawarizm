@@ -14,13 +14,7 @@ export function Logo({ className }: { className?: string }) {
         className,
       )}
     >
-      <span
-        aria-hidden
-        className="grid size-12 shrink-0 place-items-center border-5 border-brand"
-      >
-        <span className="size-4.75 bg-brand" />
-      </span>
-      {SITE.name}
+      <img src="/assets/41-54.svg" alt="خوارزم" className="h-12 w-38 object-contain" />
     </Link>
   );
 }

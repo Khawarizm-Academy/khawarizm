@@ -97,6 +97,13 @@ function Works() {
                   SPANS[i % SPANS.length],
                 )}
               >
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
                 {/* Uniform navy veil like the Figma overlay (32%). */}
                 <div aria-hidden className="absolute inset-0 bg-navy/30" />
                 <div className="relative flex flex-col items-start gap-6 px-7 pb-10 md:px-12">

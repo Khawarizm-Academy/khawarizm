@@ -14,6 +14,7 @@ export type Project = {
   id: string;
   title: string;
   kind: ProjectKind;
+  image?: string;
   /** Tailwind gradient classes used until real project images exist. */
   gradient: string;
 };
@@ -29,6 +30,7 @@ export type Testimonial = {
   quote: string;
   name: string;
   role: string;
+  avatar?: string;
 };
 
 export type Stat = { value: string; label: string };

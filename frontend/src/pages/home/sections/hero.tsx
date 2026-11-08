@@ -27,6 +27,8 @@ function HeroArt({ images }: { images: HeroImages }) {
     <div aria-hidden dir="ltr" className="w-full">
       {/* Mobile */}
       <div className="relative h-90 md:hidden">
+        <img src="/assets/41-72.svg" alt="" className="absolute inset-0 h-full w-full object-contain" />
+        <div className="hidden">
         <PhotoFrame
           tone="ghost"
           label="Hero image"
@@ -41,6 +43,7 @@ function HeroArt({ images }: { images: HeroImages }) {
         <BrainDoodle className="absolute right-[4%] top-[8%] w-24 text-navy-500" />
 
         <MiniCard className="bottom-[5%] left-[10%] w-[48%]" />
+        </div>
       </div>
 
       {/* Desktop */}
@@ -48,8 +51,9 @@ function HeroArt({ images }: { images: HeroImages }) {
         initial={{ opacity: 0, scale: 0.96, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="relative hidden h-130 w-197.5 origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100"
+        className="relative hidden h-130 w-197.5 origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100 [&>*:not(img)]:hidden"
       >
+        <img src="/assets/41-72.svg" alt="" className="absolute inset-0 h-full w-full object-contain" />
         {/* Navy disc */}
         <div className="absolute left-[13.9%] top-[17.7%] aspect-square w-[42%] rounded-full bg-navy-surface" />
 
