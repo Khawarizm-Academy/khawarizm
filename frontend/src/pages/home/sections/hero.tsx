@@ -5,8 +5,6 @@ import {
   BrainDoodle,
   BurstDoodle,
   DoodleArrow,
-  DoodleConnector,
-  DoodleCurve,
   DoodleSquiggle,
   MiniCard,
   PhotoFrame,
@@ -17,17 +15,26 @@ import { SITE } from "@/constants/site";
 import { HOME_ANCHORS } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
-/** Hero collage — the Figma frame's geometry (navy disc, laptop
- * chip, gold disc, arch portrait, floating card) with the shared
- * doodle components from `@/components/ui` layered on top; the photo
- * blocks are `PhotoFrame` (swap in real shots via its `src` prop).
- * All ornaments float on their own idle loops. Collapse to a single
- * photo block on mobile, like the mobile frame. Purely positional
- * geometry (% offsets) — the drawings live in `ui/doodles` +
- * `ui/svg-paths`, the photo frame in `ui/photo-frame`. */
+/** Cut-outs for the two arch frames (transparent PNGs).
+ * Leave a path empty to keep the ghosted placeholder. */
+const HERO_IMAGES = { laptop: "", portrait: "" };
+
+/** Doodle ink sampled from the Figma frame: `#6d82b5` for the
+ * hand-drawn marks, the dimmer `#35508f` for the burst. */
+const INK = "text-[#6d82b5]";
+const INK_DIM = "text-[#35508f]";
+
+/** Hero collage, matched to the Figma hero frame (1127 px wide).
+ * Desktop is a fixed 790 × 520 canvas whose offsets are percentages
+ * measured from that frame: navy disc, blue laptop arch, gold sparkle
+ * disc, brain + burst doodles, gold portrait arch, swirl arrow, mini
+ * card and the low arrow. The laptop is a transparent cut-out that
+ * overflows its arch (`bleed`), like the design. The canvas is LTR so
+ * it grows toward the text column, as in the frame. Mobile collapses to
+ * one photo block. */
 function HeroArt() {
   return (
-    <div aria-hidden className="mx-auto w-full max-w-[790px]">
+    <div aria-hidden dir="ltr" className="w-full">
       {/* Mobile */}
       <div className="relative h-[360px] md:hidden">
         <PhotoFrame
@@ -48,195 +55,53 @@ function HeroArt() {
 
       {/* Desktop */}
       <motion.div
-        initial={{
-          opacity: 0,
-          scale: 0.96,
-          y: 16,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.6,
-          delay: 0.15,
-          ease: "easeOut",
-        }}
-        className="relative hidden h-[520px] md:block"
+        initial={{ opacity: 0, scale: 0.96, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+        className="relative hidden h-[520px] w-[790px] origin-left md:block md:scale-[0.55] lg:scale-[0.8] min-[1100px]:scale-100"
       >
-        {/* ─────────────────────────────
-            Background organic shape
-        ───────────────────────────── */}
+        {/* Navy disc */}
+        <div className="absolute left-[16.6%] top-[21.9%] aspect-square w-[36.5%] rounded-full bg-navy-surface" />
 
-        <div
-          className="
-            absolute
-            left-[10%]
-            top-[15%]
-            aspect-square
-            w-[47%]
-            rounded-full
-            bg-navy-surface
-          "
-        />
-
-        {/* Subtle secondary blob */}
-        <div
-          className="
-            absolute
-            left-[20%]
-            top-[34%]
-            h-[28%]
-            w-[42%]
-            rounded-[45%]
-            bg-navy-surface/70
-          "
-        />
-
-        {/*
-          Arch photo blocks straight from `figma-sources/home`:
-          the blue laptop chip (`--shape-blue` → `accent`) and the
-          gold arch portrait (`bg-brand`, the default tone). Drop in
-          real photos later via `src`, without touching geometry. */}
-
+        {/* Blue arch + laptop cut-out (spills past the arch on the right) */}
         <PhotoFrame
           tone="accent"
+          src={HERO_IMAGES.laptop}
           label="Laptop image"
-          mat="8%"
-          className="
-            absolute
-            left-[7%]
-            top-[7%]
-            h-[50%]
-            w-[30%]
-            rounded-t-[48%]
-          "
+          bleed
+          fit="contain"
+          mat={{ left: "8.4%", right: "-12.6%", top: "7.6%", bottom: "5.1%" }}
+          className="absolute left-[6.7%] top-[6.9%] h-[45.6%] w-[24.2%] rounded-t-[46%]"
         />
 
-        <DoodleConnector className="absolute left-[20%] top-[49%] w-[24%] text-navy-500" />
-
-        {/* ─────────────────────────────
-            Gold sparkle
-        ───────────────────────────── */}
-
+        {/* Gold sparkle disc */}
         <motion.div
-          className="
-            absolute
-            left-[37%]
-            top-[7%]
-            flex
-            aspect-square
-            w-[14%]
-            items-center
-            justify-center
-            rounded-full
-            bg-brand
-          "
-          animate={{
-            y: [0, -7, 0],
-          }}
-          transition={{
-            duration: 3.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          className="absolute left-[36.7%] top-[12.8%] flex aspect-square w-[11%] items-center justify-center rounded-full bg-brand"
+          animate={{ y: [0, -7, 0] }}
+          transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Sparkle className="w-[55%] text-navy" />
+          <Sparkle className="w-[39%] text-navy" />
         </motion.div>
 
-        {/* ─────────────────────────────
-            Brain doodle
-        ───────────────────────────── */}
+        <BrainDoodle className={cn("absolute left-[51.8%] top-[18.5%] w-[11.4%]", INK)} />
 
-        <BrainDoodle
-          className="
-            absolute
-            left-[52%]
-            top-[13%]
-            w-[16%]
-            text-navy-500
-          "
-        />
+        <BurstDoodle className={cn("absolute left-[72.3%] top-[13.1%] w-[14.4%]", INK_DIM)} />
 
-        {/* ─────────────────────────────
-            Burst
-        ───────────────────────────── */}
-
-        <BurstDoodle
-          className="
-            absolute
-            left-[72%]
-            top-[4%]
-            w-[15%]
-            text-navy-500
-          "
-        />
-
+        {/* Gold arch portrait (cut-out sits inside the arch) */}
         <PhotoFrame
+          tone="gold"
+          src={HERO_IMAGES.portrait}
           label="Portrait image"
-          className="
-            absolute
-            left-[39%]
-            top-[39%]
-            h-[52%]
-            w-[31%]
-          "
+          fit="contain"
+          mat={{ left: "3%", right: "1.5%", top: "16.8%", bottom: "4.6%" }}
+          className="absolute left-[38.7%] top-[35.2%] h-[45.8%] w-[24.2%] rounded-t-[48%]"
         />
 
-        {/* ─────────────────────────────
-            Left hand-drawn squiggle
-        ───────────────────────────── */}
+        <DoodleSquiggle className={cn("absolute left-[6.5%] top-[57.9%] w-[14.2%]", INK)} />
 
-        <DoodleSquiggle
-          className="
-            absolute
-            left-[3%]
-            top-[58%]
-            w-[18%]
-            text-navy-500
-          "
-        />
+        <MiniCard className="left-[12.3%] top-[71.5%] w-[21%]" />
 
-        {/* ─────────────────────────────
-            Mini card
-        ───────────────────────────── */}
-
-        <MiniCard
-          className="
-            bottom-[4%]
-            left-[8%]
-            w-[27%]
-          "
-        />
-
-        {/* ─────────────────────────────
-            Bottom curved arrow
-        ───────────────────────────── */}
-
-        <DoodleArrow
-          className="
-            absolute
-            bottom-[0%]
-            left-[34%]
-            w-[22%]
-            text-navy-500
-          "
-        />
-
-        {/* ─────────────────────────────
-            Tiny floating curve
-        ───────────────────────────── */}
-
-        <DoodleCurve
-          className="
-            absolute
-            left-[46%]
-            top-[63%]
-            w-[11%]
-            text-navy-500
-          "
-        />
+        <DoodleArrow className={cn("absolute left-[37.6%] top-[88.3%] w-[9.4%]", INK)} />
       </motion.div>
     </div>
   );
@@ -266,7 +131,7 @@ function Hero() {
           </motion.h1>
           <motion.p
             variants={fadeUpItem}
-            className="mt-2 max-w-[560px] text-base leading-[30px] text-navy-muted md:mt-6"
+            className="mt-2 max-w-[400px] text-base leading-[30px] text-navy-muted md:mt-6"
           >
             نعلّمك الخوارزميات والبرمجة، ونصمم لك موقعك وتطبيقك من الفكرة
             إلى الإطلاق.
