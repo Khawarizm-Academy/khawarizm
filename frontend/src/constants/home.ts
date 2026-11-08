@@ -1,12 +1,23 @@
+import heroLaptop from "@/assets/hero-laptop.png";
+import heroPortrait from "@/assets/hero-portrait.png";
 import { GraduationCap, Globe, Smartphone } from "lucide-react";
 import type {
   Course,
+  HeroImages,
   Project,
   ProjectKind,
   Service,
   Stat,
   Testimonial,
 } from "@/types";
+
+/** Hero collage cut-outs for the two arch frames (transparent PNGs),
+ * wired as `Hero → HeroArt → PhotoFrame` — the Vite import hashes the
+ * URL at build time. */
+export const HERO_IMAGES: HeroImages = {
+  laptop: heroLaptop,
+  portrait: heroPortrait,
+};
 
 /* ⚠️ Sample content — numbers, project names, course details and
  * testimonials are placeholders written for the layout. Replace with

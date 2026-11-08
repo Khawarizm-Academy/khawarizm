@@ -11,13 +11,11 @@ import {
   Sparkle,
   buttonVariants,
 } from "@/components/ui";
+import { HERO_IMAGES } from "@/constants/home";
 import { SITE } from "@/constants/site";
 import { HOME_ANCHORS } from "@/router/routes";
+import type { HeroImages } from "@/types";
 import { cn } from "@/lib/utils";
-
-/** Cut-outs for the two arch frames (transparent PNGs).
- * Leave a path empty to keep the ghosted placeholder. */
-const HERO_IMAGES = { laptop: "", portrait: "" };
 
 /** Doodle ink sampled from the Figma frame: `#6d82b5` for the
  * hand-drawn marks, the dimmer `#35508f` for the burst. */
@@ -28,11 +26,13 @@ const INK_DIM = "text-[#35508f]";
  * Desktop is a fixed 790 × 520 canvas whose offsets are percentages
  * measured from that frame: navy disc, blue laptop arch, gold sparkle
  * disc, brain + burst doodles, gold portrait arch, swirl arrow, mini
- * card and the low arrow. The laptop is a transparent cut-out that
- * overflows its arch (`bleed`), like the design. The canvas is LTR so
- * it grows toward the text column, as in the frame. Mobile collapses to
- * one photo block. */
-function HeroArt() {
+ * card and the low arrow. Images arrive through `images` and flow
+ * `Hero → HeroArt → PhotoFrame`; an empty path keeps the ghosted
+ * placeholder. The laptop is a transparent cut-out that overflows
+ * its arch (`bleed`), like the design. The canvas is LTR so it grows
+ * toward the text column, as in the frame. Mobile collapses to one
+ * photo block. */
+function HeroArt({ images }: { images: HeroImages }) {
   return (
     <div aria-hidden dir="ltr" className="w-full">
       {/* Mobile */}
@@ -66,7 +66,7 @@ function HeroArt() {
         {/* Blue arch + laptop cut-out (spills past the arch on the right) */}
         <PhotoFrame
           tone="accent"
-          src={HERO_IMAGES.laptop}
+          src={images.laptop}
           label="Laptop image"
           bleed
           fit="contain"
@@ -90,7 +90,7 @@ function HeroArt() {
         {/* Gold arch portrait (cut-out sits inside the arch) */}
         <PhotoFrame
           tone="gold"
-          src={HERO_IMAGES.portrait}
+          src={images.portrait}
           label="Portrait image"
           fit="contain"
           mat={{ left: "3%", right: "1.5%", top: "16.8%", bottom: "4.6%" }}
@@ -107,7 +107,10 @@ function HeroArt() {
   );
 }
 
-function Hero() {
+/** Hero content lives in `@/constants/home`; images are optional
+ * paths that default to `HERO_IMAGES` (empty paths render the ghosted
+ * placeholders). */
+function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
   return (
     <section className="overflow-hidden bg-navy text-navy-foreground">
       <Container className="grid gap-10 pt-2 pb-16 md:min-h-[760px] md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-24">
@@ -156,7 +159,7 @@ function Hero() {
         </motion.div>
 
         <div className="order-first md:order-none">
-          <HeroArt />
+          <HeroArt images={images} />
         </div>
       </Container>
     </section>

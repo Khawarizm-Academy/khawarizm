@@ -32,3 +32,7 @@ export type Testimonial = {
 };
 
 export type Stat = { value: string; label: string };
+
+/** Hero collage cut-out images (transparent PNGs). An empty or
+ * missing path keeps the ghosted placeholder. */
+export type HeroImages = { laptop?: string; portrait?: string };
