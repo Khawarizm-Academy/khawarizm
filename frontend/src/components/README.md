@@ -5,7 +5,7 @@ All reusable code lives here — three subfolders by lifetime:
 | Folder     | Contents                                    | Rule                                                     |
 | ---------- | ------------------------------------------- | -------------------------------------------------------- |
 | `layout/`  | `Header`, `Footer`, `Container`, `Logo`     | page shell — rendered once by `RootLayout`, exported via `index.ts` |
-| `ui/`      | `Button`, `SectionHeading`, `TextLink`, `Rating`, `Arch`, `Burst`, `Portrait`, `MiniCard`, `ChartCard`, doodles (`Sparkle`, `BrainDoodle`, `BurstDoodle`, `DoodleArrow`, `DoodleCurve`, `DoodleConnector`, `DoodleSquiggle`), `ImagePlaceholder` | design-system blocks shared by every page; variants via cva/polymorphism |
+| `ui/`      | `Button`, `SectionHeading`, `TextLink`, `Rating`, `Arch`, `Burst`, `Portrait`, `MiniCard`, `ChartCard`, doodles (`Sparkle`, `BrainDoodle`, `BurstDoodle`, `DoodleArrow`, `DoodleCurve`, `DoodleConnector`, `DoodleSquiggle`), `ImagePlaceholder`, `PhotoFrame` | design-system blocks shared by every page; variants via cva/polymorphism |
 | `motion/`  | `variants.ts`, `FadeIn`, `PageTransition`    | **the only place motion variants are defined**; `index.ts` re-exports everything |
 
 Rules of engagement:

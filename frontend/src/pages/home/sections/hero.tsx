@@ -8,8 +8,8 @@ import {
   DoodleConnector,
   DoodleCurve,
   DoodleSquiggle,
-  ImagePlaceholder,
   MiniCard,
+  PhotoFrame,
   Sparkle,
   buttonVariants,
 } from "@/components/ui";
@@ -18,20 +18,23 @@ import { HOME_ANCHORS } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
 /** Hero collage — the Figma frame's geometry (navy disc, laptop
- * block, blue chip, gold disc, arch portrait, floating card) with
- * the shared doodle components from `@/components/ui` layered on
- * top. All ornaments float on their own idle loops. Collapse to a
- * single photo block on mobile, like the mobile frame. Purely
- * positional geometry (% offsets) — the drawings themselves live in
- * `ui/doodles` + `ui/svg-paths`. */
+ * chip, gold disc, arch portrait, floating card) with the shared
+ * doodle components from `@/components/ui` layered on top; the photo
+ * blocks are `PhotoFrame` (swap in real shots via its `src` prop).
+ * All ornaments float on their own idle loops. Collapse to a single
+ * photo block on mobile, like the mobile frame. Purely positional
+ * geometry (% offsets) — the drawings live in `ui/doodles` +
+ * `ui/svg-paths`, the photo frame in `ui/photo-frame`. */
 function HeroArt() {
   return (
     <div aria-hidden className="mx-auto w-full max-w-[790px]">
       {/* Mobile */}
       <div className="relative h-[360px] md:hidden">
-        <ImagePlaceholder
+        <PhotoFrame
+          tone="ghost"
           label="Hero image"
-          className="absolute left-[18%] top-[12%] h-[58%] w-[64%] rounded-t-full"
+          mat={false}
+          className="absolute left-[18%] top-[12%] h-[58%] w-[64%] rounded-t-full rounded-b-none"
         />
 
         <div className="absolute left-[8%] top-[8%] size-16 rounded-full bg-brand">
@@ -91,28 +94,25 @@ function HeroArt() {
           "
         />
 
-        {/* ─────────────────────────────
-            Laptop placeholder
-        ───────────────────────────── */}
+        {/*
+          Arch photo blocks straight from `figma-sources/home`:
+          the blue laptop chip (`--shape-blue` → `accent`) and the
+          gold arch portrait (`bg-brand`, the default tone). Drop in
+          real photos later via `src`, without touching geometry. */}
 
-        <div
+        <PhotoFrame
+          tone="accent"
+          label="Laptop image"
+          mat="8%"
           className="
             absolute
             left-[7%]
             top-[7%]
             h-[50%]
             w-[30%]
-            overflow-hidden
             rounded-t-[48%]
-            rounded-b-[6px]
-            bg-[#2389ed]
           "
-        >
-          <ImagePlaceholder
-            label="Laptop image"
-            className="absolute inset-[8%] rounded-t-[25%] bg-transparent"
-          />
-        </div>
+        />
 
         <DoodleConnector className="absolute left-[20%] top-[49%] w-[24%] text-navy-500" />
 
@@ -173,34 +173,16 @@ function HeroArt() {
           "
         />
 
-        {/* ─────────────────────────────
-            Portrait placeholder
-        ───────────────────────────── */}
-
-        <div
+        <PhotoFrame
+          label="Portrait image"
           className="
             absolute
             left-[39%]
             top-[39%]
             h-[52%]
             w-[31%]
-            overflow-hidden
-            rounded-t-[45%]
-            rounded-b-[6px]
-            bg-brand
           "
-        >
-          <ImagePlaceholder
-            label="Portrait image"
-            className="
-              absolute
-              inset-x-[5%]
-              bottom-0
-              top-[5%]
-              bg-transparent
-            "
-          />
-        </div>
+        />
 
         {/* ─────────────────────────────
             Left hand-drawn squiggle
