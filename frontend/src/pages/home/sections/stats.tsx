@@ -15,12 +15,12 @@ function Stats() {
           viewport={{ once: true, amount: 0.4 }}
           className="grid overflow-hidden rounded-md border border-border divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0"
         >
-          {STATS.map((stat) => (
+          {STATS.map((stat, i) => (
             /* dt before dd for valid markup; flex-col-reverse shows the big number first, label under it. */
             <motion.div
               key={stat.label}
               variants={fadeUpItem}
-              className="flex flex-col-reverse gap-1.5 px-8 py-10 md:px-10 md:py-11"
+              className={`relative flex flex-col-reverse gap-1.5 px-8 py-10 md:px-10 md:py-11 ${i === 0 ? "md:-top-3" : i === 1 ? "md:top-5" : "md:-top-2"}`}
             >
               <dt className="text-xl leading-9 text-foreground">
                 {stat.label}

@@ -90,11 +90,12 @@ function Works() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.25 }}
-                whileHover={{ y: -6 }}
+                whileHover={{ scale: 1.015 }}
                 className={cn(
                   "relative flex h-104 items-end overflow-hidden rounded-md bg-gradient-to-br",
                   project.gradient,
                   SPANS[i % SPANS.length],
+                  i % 4 === 0 ? "md:top-10" : i % 4 === 1 ? "md:-top-8" : i % 4 === 2 ? "md:top-12" : "md:-top-6",
                 )}
               >
                 {project.image && (

@@ -37,11 +37,12 @@ function TestimonialCard({ testimonial: t, index }: {
   return (
     <motion.li
       variants={reviewCardVariants(index)}
-      whileHover={{ y: index % 2 === 0 ? -6 : 6 }}
+      whileHover={{ scale: 1.015 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={cn(
         "flex flex-col border border-border p-6 md:p-12",
         CARD_CORNER[index],
+        index === 0 ? "md:-top-10" : index === 1 ? "md:top-12" : index === 2 ? "md:-top-8" : "md:top-10",
         index === 0 &&
           "bg-surface shadow-[0_32px_64px_rgba(15,31,69,0.04)]",
       )}

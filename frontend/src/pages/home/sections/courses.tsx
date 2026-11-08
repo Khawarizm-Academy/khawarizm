@@ -32,9 +32,12 @@ function Courses() {
             <motion.li
               key={course.title}
               variants={fadeUpItem}
-              whileHover={{ y: -6 }}
+              whileHover={{ scale: 1.015 }}
               transition={{ type: "spring", stiffness: 260, damping: 22 }}
-              className="flex flex-col rounded-md border border-navy-border px-6 pt-9 pb-8 md:px-12 md:pb-9"
+              className={cn(
+                "relative flex flex-col rounded-md border border-navy-border px-6 pt-9 pb-8 md:px-12 md:pb-9",
+                i === 0 ? "md:-top-10" : i === 1 ? "md:top-8" : "md:-top-6",
+              )}
             >
               <div className="flex items-start gap-4 md:gap-5">
                 {/* Numerals read LTR; `dir` keeps "01" from flipping. */}

@@ -14,9 +14,13 @@ function RootLayout() {
     <MotionConfig reducedMotion="user">
       <div className="flex min-h-svh flex-col bg-background text-foreground">
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 bg-navy">
           <AnimatePresence mode="wait" initial>
-            <motion.div key={location.pathname} {...pageTransitionProps}>
+            <motion.div
+              key={location.pathname}
+              {...pageTransitionProps}
+              className="min-h-full bg-navy"
+            >
               {outlet}
             </motion.div>
           </AnimatePresence>

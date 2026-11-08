@@ -28,10 +28,11 @@ function Services() {
             <motion.li
               key={title}
               variants={fadeUpItem}
-              whileHover={{ y: -6 }}
+              whileHover={{ scale: 1.015 }}
               transition={{ type: "spring", stiffness: 260, damping: 22 }}
               className={cn(
-                "flex flex-col items-start rounded-md border border-border p-7 transition-shadow md:min-h-100 md:p-12",
+                "relative flex flex-col items-start rounded-md border border-border p-7 transition-shadow md:min-h-100 md:p-12",
+                i === 0 ? "md:-top-8" : i === 1 ? "md:top-12" : "md:-top-5",
                 i === 1
                   ? "shadow-[0_32px_64px_rgba(15,31,69,0.04)] hover:shadow-[0_32px_64px_rgba(15,31,69,0.10)]"
                   : "hover:shadow-[0_32px_64px_rgba(15,31,69,0.04)]",
