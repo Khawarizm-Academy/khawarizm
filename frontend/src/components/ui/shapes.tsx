@@ -68,36 +68,36 @@ export function Portrait({
   );
 }
 
-export function MiniCard({
-   className = "",
- }: {
-   className?: string;
- }) {
-   return (
-     <motion.div
-       className={`absolute rounded-[5px] bg-white shadow-sm ${className}`}
-       animate={{
-         y: [0, -5, 0],
-         rotate: [-1, 0.5, -1],
-       }}
-       transition={{
-         duration: 4,
-         repeat: Infinity,
-         ease: "easeInOut",
-       }}
-     >
-       <div className="flex items-center gap-4 p-4">
-         <div className="h-10 w-10 shrink-0 rounded-full bg-brand" />
-
-         <div className="flex flex-1 flex-col gap-2">
-           <span className="h-2 w-[72%] rounded-full bg-brand/40" />
-           <span className="h-2 w-full rounded-full bg-brand/30" />
-           <span className="h-2 w-[82%] rounded-full bg-brand/30" />
-         </div>
-       </div>
-     </motion.div>
-   );
- }
+/** White profile card from the hero collage: gold avatar dot + four
+ * skeleton bars. Everything inside is placed in percentages of a fixed
+ * 166 × 87 ratio (measured from the Figma frame), so it scales with
+ * the collage. Floats on a slow idle loop. */
+export function MiniCard({ className = "" }: { className?: string }) {
+  return (
+    <motion.div
+      aria-hidden
+      className={cn(
+        "absolute aspect-[166/87] rounded-[5px] bg-white shadow-sm",
+        className,
+      )}
+      animate={{
+        y: [0, -5, 0],
+        rotate: [-1, 0.5, -1],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      <span className="absolute left-[7.8%] top-[16%] aspect-square w-[21%] rounded-full bg-brand" />
+      <span className="absolute left-[39.2%] top-[24.6%] h-[12%] w-[44.3%] rounded-[3px] bg-gold-100" />
+      <span className="absolute left-[39.2%] top-[50.6%] h-[5.7%] w-[36.6%] rounded-full bg-gold-100" />
+      <span className="absolute left-[39.2%] top-[63.2%] h-[5.7%] w-[44.3%] rounded-full bg-gold-100" />
+      <span className="absolute left-[39.2%] top-[75.9%] h-[5.7%] w-[28.9%] rounded-full bg-gold-100" />
+    </motion.div>
+  );
+}
 
 /** White card with a mini bar chart, lifted from the gold CTA
  * artwork (`--gold-100` bars + gold avatar dot). */

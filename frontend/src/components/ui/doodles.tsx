@@ -25,7 +25,7 @@ const OUTLINE_STROKE = {
   strokeLinecap: "round",
 } as const;
 
-/** Four-point star (+ satellite spark), filled — sits on the gold
+/** Four-point star (+ two satellite sparks), filled — sits on the gold
  * disc and sparkles on its own. */
 export function Sparkle({ className }: DoodleProps) {
   return (
@@ -51,7 +51,7 @@ export function Sparkle({ className }: DoodleProps) {
   );
 }
 
-/** Folded brain doodle — bobs and tilts slowly. */
+/** Curly cloud-brain doodle — bobs and tilts slowly. */
 export function BrainDoodle({ className }: DoodleProps) {
   return (
     <motion.svg
@@ -70,18 +70,16 @@ export function BrainDoodle({ className }: DoodleProps) {
       }}
     >
       <path
-        d={BRAIN_DOODLE.outline}
+        d={BRAIN_DOODLE.path}
         {...OUTLINE_STROKE}
+        strokeWidth={1.5}
         strokeLinejoin="round"
       />
-      {BRAIN_DOODLE.folds.map((d) => (
-        <path key={d} d={d} {...OUTLINE_STROKE} />
-      ))}
     </motion.svg>
   );
 }
 
-/** Hand-drawn irregular star-burst — sways ±5° slowly. The organic
+/** 13-spike star-burst — sways ±5° slowly. The organic
  * counterpart of the generated `Burst` in `shapes.tsx`. */
 export function BurstDoodle({ className }: DoodleProps) {
   return (
@@ -115,9 +113,9 @@ export function DoodleArrow({ className }: DoodleProps) {
       viewBox={DOODLE_ARROW.viewBox}
       fill="none"
       className={className}
-      initial={{ opacity: 0.65 }}
+      initial={{ opacity: 0.85 }}
       animate={{
-        opacity: [0.55, 0.9, 0.55],
+        opacity: [0.75, 1, 0.75],
         x: [0, 4, 0],
       }}
       transition={{
@@ -126,10 +124,11 @@ export function DoodleArrow({ className }: DoodleProps) {
         ease: "easeInOut",
       }}
     >
-      <path d={DOODLE_ARROW.shaft} {...OUTLINE_STROKE} />
+      <path d={DOODLE_ARROW.shaft} {...OUTLINE_STROKE} strokeWidth={1.3} />
       <path
         d={DOODLE_ARROW.head}
         {...OUTLINE_STROKE}
+        strokeWidth={1.3}
         strokeLinejoin="round"
       />
     </motion.svg>
@@ -193,7 +192,7 @@ export function DoodleConnector({ className }: DoodleProps) {
   );
 }
 
-/** Looping scribble — rocks side to side. */
+/** Looping swirl arrow — rocks side to side. */
 export function DoodleSquiggle({ className }: DoodleProps) {
   return (
     <motion.svg
@@ -211,7 +210,13 @@ export function DoodleSquiggle({ className }: DoodleProps) {
         ease: "easeInOut",
       }}
     >
-      <path d={DOODLE_SQUIGGLE.path} {...OUTLINE_STROKE} />
+      <path d={DOODLE_SQUIGGLE.path} {...OUTLINE_STROKE} strokeWidth={2.2} />
+      <path
+        d={DOODLE_SQUIGGLE.head}
+        {...OUTLINE_STROKE}
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+      />
     </motion.svg>
   );
 }

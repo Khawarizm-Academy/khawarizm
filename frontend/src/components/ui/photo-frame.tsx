@@ -12,6 +12,8 @@ const PHOTO_TONES = {
   accent: "bg-accent",
   navy: "bg-navy",
   sand: "bg-sand",
+  /** Lighter gold of the portrait arch (`#f0cb6a`), distinct from `brand`. */
+  gold: "bg-[#f0cb6a]",
   ghost: "bg-navy-400/20",
 } as const;
 
@@ -26,6 +28,8 @@ export type PhotoMat =
   | string
   | {
       x?: string;
+      left?: string;
+      right?: string;
       top?: string;
       bottom?: string;
     }
@@ -43,8 +47,8 @@ function matToStyle(mat: PhotoMat): CSSProperties {
     return { left: mat, right: mat, top: mat, bottom: mat };
   }
   return {
-    left: mat.x ?? "0",
-    right: mat.x ?? "0",
+    left: mat.left ?? mat.x ?? "0",
+    right: mat.right ?? mat.x ?? "0",
     top: mat.top ?? "0",
     bottom: mat.bottom ?? "0",
   };
@@ -67,6 +71,11 @@ type PhotoFrameProps = ComponentProps<"div"> & {
    * the About/CTA frames. Override any radius via `className`
    * (tailwind-merge keeps the last say, e.g. `rounded-t-[48%]`). */
   shape?: "arch" | "plain";
+  /** Let the photo spill past the plate (transparent cut-outs such as
+   * the laptop, which overflows its arch). Mat values may be negative. */
+  bleed?: boolean;
+  /** `contain` for cut-outs (never cropped), `cover` for plain photos. */
+  fit?: "cover" | "contain";
 };
 
 /** The shaped photo block from the home frames — the place where
@@ -81,6 +90,8 @@ export function PhotoFrame({
   mat = DEFAULT_MAT,
   tone = "brand",
   shape = "arch",
+  bleed = false,
+  fit = "cover",
   className,
   children,
   ...props
@@ -88,7 +99,8 @@ export function PhotoFrame({
   return (
     <div
       className={cn(
-        "relative overflow-hidden",
+        "relative",
+        !bleed && "overflow-hidden",
         PHOTO_TONES[tone],
         shape === "arch"
           ? "rounded-t-[45%] rounded-b-[6px]"
@@ -102,7 +114,10 @@ export function PhotoFrame({
           <img
             src={src}
             alt={alt}
-            className="size-full object-cover"
+            className={cn(
+              "size-full",
+              fit === "contain" ? "object-contain" : "object-cover",
+            )}
           />
         ) : (
           label && (
