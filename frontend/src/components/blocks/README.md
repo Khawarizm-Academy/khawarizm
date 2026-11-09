@@ -20,6 +20,8 @@ call site. Import everything from `@/components/blocks`.
 | `showcase-card.tsx`    | `ShowcaseCard`              | navy project tile (works ×4, future works page)                                      |
 | `member-card.tsx`      | `MemberCard`                | navy team card (team ×4, future about page)                                          |
 | `filter.tsx`           | `FilterTabs`, `FilterSelect`| works filtering (text tabs with Arabic dots on md+, 48px select below)               |
+| `collapsible.tsx`      | `CollapsibleRegion`         | height-animated disclosure region — pair with any `<button aria-expanded>` accordion header |
+| `service-detail.tsx`   | `ServiceDetailCard`         | services page rows: title + display heading + gold icon disc behind one toggle; body + gold-checked bullets ease open in the second `md` column |
 
 Rules of engagement (extend the `components/README.md` list):
 

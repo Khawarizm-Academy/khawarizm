@@ -6,7 +6,7 @@ All reusable code lives here — four subfolders by lifetime:
 | ---------- | ------------------------------------------- | -------------------------------------------------------- |
 | `layout/`  | `Header`, `Footer`, `Container`, `Logo`     | page shell — rendered once by `RootLayout`, exported via `index.ts` |
 | `ui/`      | `Button`, `SectionHeading`, `TextLink`, `Rating`, `Arch`, `Burst`, `Portrait`, `MiniCard`, `ChartCard`, doodles (`Sparkle`, `BrainDoodle`, `BurstDoodle`, `DoodleArrow`, `DoodleCurve`, `DoodleConnector`, `DoodleSquiggle`), `ImagePlaceholder`, `PhotoFrame` | design-system atoms shared by every page; variants via cva/polymorphism |
-| `blocks/`  | `Section`, `SectionAction`, `Split`, `StaggerGrid`/`StaggerItem` + `lift()`, `StatsBand`, `CtaBand`, `PageHero`, `IconCard`, `CourseCard`, `TestimonialCard`, `ShowcaseCard`, `MemberCard`, `FilterTabs`/`FilterSelect` | **page-composition blocks** — the repeated section/card/band recipes extracted from Home + About; new pages assemble from these (see its README) |
+| `blocks/`  | `Section`, `SectionAction`, `Split`, `StaggerGrid`/`StaggerItem` + `lift()`, `StatsBand`, `CtaBand`, `PageHero`, `IconCard`, `CourseCard`, `TestimonialCard`, `ShowcaseCard`, `MemberCard`, `FilterTabs`/`FilterSelect`, `CollapsibleRegion`, `ServiceDetailCard` | **page-composition blocks** — the repeated section/card/band recipes extracted from Home + About; new pages assemble from these (see its README) |
 | `motion/`  | `variants.ts`, `FadeIn`, `PageTransition`    | **the only place motion variants are defined**; `index.ts` re-exports everything |
 
 Rules of engagement:

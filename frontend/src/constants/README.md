@@ -8,6 +8,8 @@ translatable and replaceable by API data later.
 | -------- | ------------- |
 | `site.ts`   | `SITE` (name/tagline), `NAV_ITEMS` (header), `FOOTER_MENU`, `FOOTER_SERVICES`, `FOOTER_LEGAL` — all as `NavItem { label, href }` referencing `@/router/routes` paths/anchors |
 | `home.ts`   | per-section data: `STATS`, `SERVICES` (+ lucide `icon`), `PROJECT_FILTERS` + `KIND_LABELS`, `PROJECTS` (id/kind/`gradient` classes stand in for real screenshots), `COURSES` (incl. `level` / `duration`), `TESTIMONIALS` |
+| `about.ts`  | `ABOUT_STATS`, `TEAM` |
+| `services.ts` | `SERVICES_DETAIL` (accordion rows for the services page: title/heading/body/icon/points), `SERVICE_STEPS` |
 
 ⚠️ **Sample content** — `home.ts` is explicitly marked: the numbers,
 Projects, Courses and Testimonials are placeholder copy written for the

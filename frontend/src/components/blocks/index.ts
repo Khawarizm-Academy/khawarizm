@@ -1,3 +1,4 @@
+export * from "./collapsible";
 export * from "./cta-band";
 export * from "./course-card";
 export * from "./filter";
@@ -5,6 +6,7 @@ export * from "./icon-card";
 export * from "./member-card";
 export * from "./page-hero";
 export * from "./section";
+export * from "./service-detail";
 export * from "./showcase-card";
 export * from "./split";
 export * from "./stagger";
