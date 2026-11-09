@@ -8,7 +8,7 @@ export const SITE = {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "الرئيسية", href: ROUTES.home },
-  { label: "الخدمات", href: HOME_ANCHORS.services },
+  { label: "الخدمات", href: ROUTES.services },
   { label: "الأعمال", href: HOME_ANCHORS.works },
   { label: "الدورات", href: HOME_ANCHORS.courses },
   { label: "من نحن", href: ROUTES.about },
