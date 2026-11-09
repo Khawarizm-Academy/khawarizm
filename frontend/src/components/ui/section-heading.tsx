@@ -2,7 +2,8 @@ import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
   eyebrow: string;
-  title: string;
+  /** Omit to render the eyebrow alone (standalone `قصتنا`/`فريقنا` labels). */
+  title?: string;
   /** `dark` = on a navy section. */
   tone?: "light" | "dark";
   align?: "start" | "center";
@@ -11,7 +12,7 @@ type SectionHeadingProps = {
   className?: string;
 };
 
-/** Eyebrow + H2 pair shared by every Home section. */
+/** Eyebrow + (optional) H2 pair shared by every section. */
 function SectionHeading({
   eyebrow,
   title,
@@ -25,23 +26,26 @@ function SectionHeading({
     <div className={cn(align === "center" && "text-center", className)}>
       <p
         className={cn(
-          "mb-6 font-heading text-base font-medium leading-7",
+          title ? "mb-6" : "",
+          "font-heading text-base font-medium leading-7",
           dark ? "text-brand" : "text-brand-ink",
         )}
       >
         {eyebrow}
       </p>
-      <h2
-        className={cn(
-          "font-display text-[36px] font-extrabold leading-12.5",
-          size === "lg"
-            ? "md:text-[56px] md:leading-18"
-            : "md:text-[40px] md:leading-14",
-          dark ? "text-white" : "text-foreground",
-        )}
-      >
-        {title}
-      </h2>
+      {title && (
+        <h2
+          className={cn(
+            "font-display text-[36px] font-extrabold leading-12.5",
+            size === "lg"
+              ? "md:text-[56px] md:leading-18"
+              : "md:text-[40px] md:leading-14",
+            dark ? "text-white" : "text-foreground",
+          )}
+        >
+          {title}
+        </h2>
+      )}
     </div>
   );
 }

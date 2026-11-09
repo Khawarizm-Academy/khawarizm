@@ -1,5 +1,5 @@
+import { PageHero } from "@/components/blocks";
 import { AboutCta } from "./sections/about-cta";
-import { AboutHero } from "./sections/about-hero";
 import { AboutIdentity } from "./sections/identity";
 import { AboutStory } from "./sections/story";
 import { AboutTeam } from "./sections/team";
@@ -7,7 +7,10 @@ import { AboutTeam } from "./sections/team";
 export function AboutPage() {
   return (
     <>
-      <AboutHero />
+      <PageHero
+        title="من نحن"
+        lead="أكاديمية تقنية عربية تعلّم البرمجة وتبني المشاريع الرقمية."
+      />
       <AboutStory />
       <AboutIdentity />
       <AboutTeam />

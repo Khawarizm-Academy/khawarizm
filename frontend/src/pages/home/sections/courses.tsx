@@ -1,93 +1,45 @@
-import { motion } from "motion/react";
-import { Container } from "@/components/layout";
-import { fadeUpItem, staggerContainer } from "@/components/motion";
-import { SectionHeading, TextLink, buttonVariants } from "@/components/ui";
+import { Section, SectionAction, CourseCard, StaggerGrid, StaggerItem, lift } from "@/components/blocks";
+import { SectionHeading } from "@/components/ui";
 import { COURSES } from "@/constants/home";
 import { ROUTES } from "@/router/routes";
-import { cn } from "@/lib/utils";
 
-/** Navy band continuing Works. Card (Figma): index number + "دورة تقنية" + duration, divider, name/summary/link; stagger in, hover-lift. */
+/** Figma staggering on the ordered course trio. */
+const LIFTS = ["md:-top-10", "md:top-8", "md:-top-6"];
+
+/** Navy band continuing Works. Card anatomy: index + level/duration, divider, name/summary/link; stagger in, hover-lift. */
 function Courses() {
   return (
-    <section
+    <Section
       id="courses"
-      className="bg-navy pt-16 pb-16 text-navy-foreground md:pt-40 md:pb-24"
+      tone="navy"
+      containerClassName="pt-16 pb-16 md:pt-40 md:pb-24"
     >
-      <Container>
-        <SectionHeading
-          tone="dark"
-          align="center"
-          eyebrow="الدورات"
-          title="ابدأ رحلتك في البرمجة"
-        />
+      <SectionHeading
+        tone="dark"
+        align="center"
+        eyebrow="الدورات"
+        title="ابدأ رحلتك في البرمجة"
+      />
 
-        <motion.ol
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-10 grid gap-8 md:mt-16 md:grid-cols-3"
-        >
-          {COURSES.map((course, i) => (
-            <motion.li
-              key={course.title}
-              variants={fadeUpItem}
-              whileHover={{ scale: 1.015 }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
-              className={cn(
-                "relative flex flex-col rounded-md border border-navy-border px-6 pt-9 pb-8 md:px-12 md:pb-9",
-                i === 0 ? "md:-top-10" : i === 1 ? "md:top-8" : "md:-top-6",
-              )}
-            >
-              <div className="flex items-start gap-4 md:gap-5">
-                {/* Numerals read LTR; `dir` keeps "01" from flipping. */}
-                <span
-                  aria-label={`المرحلة ${i + 1}`}
-                  dir="ltr"
-                  className="text-left font-display text-[44px] font-extrabold leading-15 text-white md:text-[72px] md:leading-23"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="flex flex-col items-start pt-1.5">
-                  <span className="font-heading text-xl font-bold leading-8 text-white md:text-2xl md:leading-9">
-                    دورة تقنية
-                  </span>
-                  <span className="font-sans text-base leading-7.5 text-white">
-                    {course.duration}
-                  </span>
-                </span>
-              </div>
+      <StaggerGrid tag="ol" className="mt-10 gap-8 md:mt-16 md:grid-cols-3">
+        {COURSES.map((course, i) => (
+          <StaggerItem key={course.title} className={lift(i, LIFTS)}>
+            <CourseCard
+              index={i + 1}
+              level={course.level}
+              duration={course.duration}
+              title={course.title}
+              body={course.description}
+              href={ROUTES.courses}
+            />
+          </StaggerItem>
+        ))}
+      </StaggerGrid>
 
-              <div className="mt-8 border-t border-navy-border pt-10 md:mt-16 md:pt-10">
-                <h3 className="font-heading text-xl font-bold leading-8 text-white md:text-2xl md:leading-9">
-                  {course.title}
-                </h3>
-                <p className="mt-3.5 text-base leading-7.5 text-navy-muted">
-                  {course.description}
-                </p>
-              </div>
-
-              <TextLink
-                href={ROUTES.courses}
-                tone="dark"
-                className="mt-9"
-              >
-                اعرف المزيد
-              </TextLink>
-            </motion.li>
-          ))}
-        </motion.ol>
-
-        <div className="mt-12 flex justify-center">
-          <a
-            href={ROUTES.courses}
-            className={cn(buttonVariants({ variant: "light" }))}
-          >
-            كل الدورات
-          </a>
-        </div>
-      </Container>
-    </section>
+      <SectionAction href={ROUTES.courses} variant="light" rowClassName="mt-12">
+        كل الدورات
+      </SectionAction>
+    </Section>
   );
 }
 

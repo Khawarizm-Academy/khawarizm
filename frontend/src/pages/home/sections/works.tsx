@@ -1,12 +1,8 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Container } from "@/components/layout";
-import { SectionHeading, buttonVariants } from "@/components/ui";
-import {
-  KIND_LABELS,
-  PROJECTS,
-  PROJECT_FILTERS,
-} from "@/constants/home";
+import { Section, SectionAction, FilterSelect, FilterTabs, ShowcaseCard, lift } from "@/components/blocks";
+import { SectionHeading } from "@/components/ui";
+import { KIND_LABELS, PROJECTS, PROJECT_FILTERS } from "@/constants/home";
 import type { ProjectKind } from "@/types";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/router/routes";
@@ -19,6 +15,9 @@ const SPANS = [
   "md:col-span-5",
 ];
 
+/** Figma column shifts cycle over four tiles: down, up, deeper, up-scale. */
+const LIFTS = ["md:top-10", "md:-top-8", "md:top-12", "md:-top-6"];
+
 type Filter = "all" | ProjectKind;
 
 function Works() {
@@ -26,110 +25,63 @@ function Works() {
   const visible = PROJECTS.filter((p) => filter === "all" || p.kind === filter);
 
   return (
-    <section id="works" className="bg-navy pt-16 text-navy-foreground md:pt-24">
-      <Container>
-        <SectionHeading
-          tone="dark"
-          align="center"
-          eyebrow="معرض الأعمال"
-          title="أحدث الأعمال"
-        />
+    <Section id="works" tone="navy" containerClassName="pt-16 md:pt-24">
+      <SectionHeading
+        tone="dark"
+        align="center"
+        eyebrow="معرض الأعمال"
+        title="أحدث الأعمال"
+      />
 
-        {/* Mobile filter — the Figma mobile design swaps the tabs for a dropdown field (48px, white with gold hairline). */}
-        <select
-          value={filter}
-          onChange={(e) => setFilter(e.currentTarget.value as Filter)}
-          aria-label="تصفية الأعمال"
-          className="mt-8 h-12 w-full rounded-md border border-border bg-surface px-4 font-sans text-base text-foreground md:hidden"
-        >
-          {PROJECT_FILTERS.map((f) => (
-            <option key={f.id} value={f.id}>
-              {f.label}
-            </option>
+      <FilterSelect
+        value={filter}
+        onChange={(id) => setFilter(id as Filter)}
+        options={PROJECT_FILTERS}
+        ariaLabel="تصفية الأعمال"
+        className="mt-8"
+      />
+      {/* Desktop — plain text tabs; active tab is plain white. */}
+      <FilterTabs
+        value={filter}
+        onChange={(id) => setFilter(id as Filter)}
+        options={PROJECT_FILTERS}
+        ariaLabel="تصفية الأعمال"
+        className="mt-8"
+      />
+
+      <ul className="mt-10 grid gap-8 md:grid-cols-12">
+        <AnimatePresence mode="popLayout">
+          {visible.map((project, i) => (
+            <motion.li
+              key={project.id}
+              layout
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.25 }}
+              whileHover={{ scale: 1.015 }}
+              className={cn("relative", SPANS[i % SPANS.length], lift(i, LIFTS))}
+            >
+              <ShowcaseCard
+                title={project.title}
+                chip={KIND_LABELS[project.kind]}
+                image={project.image}
+                gradient={project.gradient}
+              />
+            </motion.li>
           ))}
-        </select>
+        </AnimatePresence>
+      </ul>
 
-        {/* Desktop filter — plain text tabs separated by Arabic dot glyphs; the active tab is plain white. */}
-        <div
-          role="group"
-          aria-label="تصفية الأعمال"
-          className="mt-8 hidden items-center justify-center md:flex"
-        >
-          {PROJECT_FILTERS.map((f, i) => (
-            <Fragment key={f.id}>
-              {i > 0 && (
-                <span
-                  aria-hidden
-                  className="mx-6 text-sm leading-6 text-navy-muted"
-                >
-                  ٠
-                </span>
-              )}
-              <button
-                type="button"
-                aria-pressed={filter === f.id}
-                onClick={() => setFilter(f.id)}
-                className={cn(
-                  "font-sans text-base leading-7.5 transition-colors",
-                  filter === f.id ? "text-white" : "text-navy-muted hover:text-white/80",
-                )}
-              >
-                {f.label}
-              </button>
-            </Fragment>
-          ))}
-        </div>
-
-        <ul className="mt-10 grid gap-8 md:grid-cols-12">
-          <AnimatePresence mode="popLayout">
-            {visible.map((project, i) => (
-              <motion.li
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.25 }}
-                whileHover={{ scale: 1.015 }}
-                className={cn(
-                  "relative flex h-104 items-end overflow-hidden rounded-md bg-gradient-to-br",
-                  project.gradient,
-                  SPANS[i % SPANS.length],
-                  i % 4 === 0 ? "md:top-10" : i % 4 === 1 ? "md:-top-8" : i % 4 === 2 ? "md:top-12" : "md:-top-6",
-                )}
-              >
-                {project.image && (
-                  <img
-                    src={project.image}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                )}
-                {/* Uniform navy veil like the Figma overlay (32%). */}
-                <div aria-hidden className="absolute inset-0 bg-navy/30" />
-                <div className="relative flex flex-col items-start gap-6 px-7 pb-10 md:px-12">
-                  <span className="rounded-full bg-surface px-5 py-1 font-sans text-base text-foreground">
-                    {KIND_LABELS[project.kind]}
-                  </span>
-                  <h3 className="font-display text-[36px] font-extrabold leading-12.5 text-white md:text-[40px] md:leading-14">
-                    {project.title}
-                  </h3>
-                </div>
-              </motion.li>
-            ))}
-          </AnimatePresence>
-        </ul>
-
-        <div className="mt-12 flex justify-center pb-16 md:pb-24">
-          <a
-            href={ROUTES.works}
-            className={cn(buttonVariants({ variant: "light" }))}
-          >
-            عرض كل الأعمال
-          </a>
-        </div>
-      </Container>
-    </section>
+      {/* pb lives here: this action row closes the navy band. */}
+      <SectionAction
+        href={ROUTES.works}
+        variant="light"
+        rowClassName="mt-12 pb-16 md:pb-24"
+      >
+        عرض كل الأعمال
+      </SectionAction>
+    </Section>
   );
 }
 

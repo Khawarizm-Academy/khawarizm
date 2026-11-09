@@ -1,5 +1,8 @@
 import { motion } from "motion/react";
-import { Container } from "@/components/layout";
+import {
+  Section,
+  Split,
+} from "@/components/blocks";
 import { fadeUpItem, staggerContainer } from "@/components/motion";
 import {
   BrainDoodle,
@@ -101,16 +104,23 @@ function HeroArt({ images }: { images: HeroImages }) {
   );
 }
 
-/** Hero content lives in `@/constants/home`; `images` defaults to `HERO_IMAGES`, where empty paths render ghosted placeholders. */
+/** Hero content lives in `@/constants/site`; `images` defaults to `HERO_IMAGES`, where empty paths render ghosted placeholders. */
 function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
   return (
-    <section className="overflow-hidden bg-navy text-navy-foreground">
-      <Container className="grid gap-10 pt-2 pb-16 md:min-h-190 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-24">
+    <Section
+      tone="navy"
+      className="overflow-hidden"
+      containerClassName="pt-2 pb-16 md:pt-20 md:pb-24"
+    >
+      <Split
+        className="md:min-h-190"
+        media={<HeroArt images={images} />}
+      >
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="order-last flex flex-col items-start gap-4 md:order-0"
+          className="flex flex-col items-start gap-4"
         >
           <motion.p
             variants={fadeUpItem}
@@ -149,12 +159,8 @@ function Hero({ images = HERO_IMAGES }: { images?: HeroImages }) {
             </a>
           </motion.div>
         </motion.div>
-
-        <div className="order-first md:order-0">
-          <HeroArt images={images} />
-        </div>
-      </Container>
-    </section>
+      </Split>
+    </Section>
   );
 }
 
