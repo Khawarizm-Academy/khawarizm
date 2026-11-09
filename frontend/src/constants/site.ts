@@ -11,11 +11,11 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "الخدمات", href: HOME_ANCHORS.services },
   { label: "الأعمال", href: HOME_ANCHORS.works },
   { label: "الدورات", href: HOME_ANCHORS.courses },
-  { label: "من نحن", href: HOME_ANCHORS.about },
+  { label: "من نحن", href: ROUTES.about },
 ];
 
 export const FOOTER_MENU: NavItem[] = [
-  { label: "من نحن", href: HOME_ANCHORS.about },
+  { label: "من نحن", href: ROUTES.about },
   { label: "الخدمات", href: HOME_ANCHORS.services },
   { label: "الأعمال", href: HOME_ANCHORS.works },
   { label: "تواصل معنا", href: HOME_ANCHORS.contact },

@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { RootLayout } from "@/layouts";
+import { AboutPage } from "@/pages/about";
 import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
 import { ROUTES } from "./routes";
@@ -10,6 +11,7 @@ const router = createBrowserRouter([
     children: [
       /** The app starts with Home. */
       { index: true, element: <HomePage /> },
+      { path: ROUTES.about, element: <AboutPage /> },
       { path: ROUTES.notFound, element: <NotFoundPage /> },
     ],
   },
