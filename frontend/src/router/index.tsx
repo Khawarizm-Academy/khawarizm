@@ -4,6 +4,7 @@ import { AboutPage } from "@/pages/about";
 import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
 import { ServicesPage } from "@/pages/services";
+import { WorksPage } from "@/pages/works";
 import { ROUTES } from "./routes";
 
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: ROUTES.about, element: <AboutPage /> },
       { path: ROUTES.services, element: <ServicesPage /> },
+      { path: ROUTES.works, element: <WorksPage /> },
       { path: ROUTES.notFound, element: <NotFoundPage /> },
     ],
   },
