@@ -40,12 +40,13 @@ function Works() {
         ariaLabel="تصفية الأعمال"
         className="mt-8"
       />
-      {/* Desktop — plain text tabs; active tab is plain white. */}
+      {/* Desktop — plain text tabs; active tab is plain white on the navy band. */}
       <FilterTabs
         value={filter}
         onChange={(id) => setFilter(id as Filter)}
         options={PROJECT_FILTERS}
         ariaLabel="تصفية الأعمال"
+        tone="dark"
         className="mt-8"
       />
 

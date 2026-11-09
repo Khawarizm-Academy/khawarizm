@@ -32,8 +32,26 @@ function FilterSelect({ value, onChange, options, ariaLabel, className }: Filter
   );
 }
 
-/** Desktop filter: plain text tabs separated by Arabic dot glyphs `٠`; the active tab is plain white. */
-function FilterTabs({ value, onChange, options, ariaLabel, className }: FilterProps) {
+/** Desktop filter: plain text tabs separated by Arabic dot glyphs `٠`. Reads on cream by default; `tone="dark"` flips to the navy-band palette (`white` active tab, `navy-muted` idle). */
+type FilterTabsProps = FilterProps & {
+  /** Band the tabs sit on — `light` = default cream canvas, `dark` = navy (`text-white` active). */
+  tone?: "light" | "dark";
+};
+
+const TAB_TONES = {
+  light: {
+    active: "font-bold text-foreground",
+    idle: "text-muted hover:text-foreground",
+  },
+  dark: {
+    active: "text-white",
+    idle: "text-navy-muted hover:text-white/80",
+  },
+} as const;
+
+function FilterTabs({ value, onChange, options, ariaLabel, tone = "light", className }: FilterTabsProps) {
+  const tokens = TAB_TONES[tone];
+
   return (
     <div
       role="group"
@@ -51,12 +69,7 @@ function FilterTabs({ value, onChange, options, ariaLabel, className }: FilterPr
             type="button"
             aria-pressed={value === option.id}
             onClick={() => onChange(option.id)}
-            className={cn(
-              "cursor-pointer font-sans text-base leading-7.5 transition-colors",
-              value === option.id
-                ? "text-white"
-                : "text-navy-muted hover:text-white/80",
-            )}
+            className={cn("cursor-pointer font-sans text-base leading-7.5 transition-colors", value === option.id ? tokens.active : tokens.idle)}
           >
             {option.label}
           </button>

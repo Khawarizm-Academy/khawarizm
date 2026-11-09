@@ -6,11 +6,14 @@ owns no design-system styling of its own.
 
 | Folder        | Route | Entry                                   |
 | ------------- | ----- | --------------------------------------- |
-| `home/`       | `/`   | `index.tsx` + one file per section in `sections/` |
+| `home/`       | `/`    | `index.tsx` + one file per section in `sections/` |
+| `about/`      | `/about`    | `index.tsx` (`PageHero` shell) + one file per section in `sections/` |
+| `services/`   | `/services` | `index.tsx` (`PageHero` shell) + `sections/` (services-list / steps / cta) |
+| `works/`      | `/works`    | `index.tsx` (`PageHero` shell) + `sections/` (gallery / cta) |
 | `not-found/`  | `*`   | `index.tsx`                             |
 
 Planned pages (paths in `../router/routes.ts`, render 404 until built):
-`about`, `services`, `works`, `courses`, `contact`.
+`courses`, `contact`.
 
 Page conventions:
 

@@ -19,7 +19,7 @@ call site. Import everything from `@/components/blocks`.
 | `testimonial-card.tsx` | `TestimonialCard`           | quote card with rating strips + corner map (×4, future about page)                   |
 | `showcase-card.tsx`    | `ShowcaseCard`              | navy project tile (works ×4, future works page)                                      |
 | `member-card.tsx`      | `MemberCard`                | navy team card (team ×4, future about page)                                          |
-| `filter.tsx`           | `FilterTabs`, `FilterSelect`| works filtering (text tabs with Arabic dots on md+, 48px select below)               |
+| `filter.tsx`           | `FilterTabs`, `FilterSelect`| works filtering (text tabs with Arabic dots on md+, 48px select below); `tone` flips the tab palette — default reads on cream, `tone="dark"` = white active tab on navy bands |
 | `collapsible.tsx`      | `CollapsibleRegion`         | height-animated disclosure region — pair with any `<button aria-expanded>` accordion header |
 | `service-detail.tsx`   | `ServiceDetailCard`         | services page rows: title + display heading + gold icon disc behind one toggle; body + gold-checked bullets ease open **under the heading** — full-width vertical stack, so long Arabic headings stay on one line |
 
