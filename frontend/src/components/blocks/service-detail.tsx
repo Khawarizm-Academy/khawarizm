@@ -16,7 +16,7 @@ type ServiceDetailCardProps = {
   className?: string;
 };
 
-/** The services-page row as a collapsible block: the whole header (eyebrow title + display heading + gold icon disc + chevron) is one accessible toggle; body + gold-checked bullets ease open beneath/beside it (`details` live in the second `md` column, exactly like the flat design when expanded). */
+/** The services-page row as a collapsible block: the whole header (eyebrow title + display heading + gold icon disc + chevron) is one accessible toggle; body + gold-checked bullets ease open **beneath** it — the display heading owns the full row (long Arabic titles stay on one line) and the details read under the title, stacked full-width. */
 function ServiceDetailCard({
   title,
   heading,
@@ -30,7 +30,7 @@ function ServiceDetailCard({
   const regionId = useId();
 
   return (
-    <div className={cn("grid gap-10 md:grid-cols-[1fr_1fr] md:items-start md:gap-24", className)}>
+    <div className={cn("flex flex-col gap-10", className)}>
       {/* `<h3><button…>` — the WAI-ARIA accordion pattern: text stays heading-level, the phrasing-content button keeps `aria-expanded`/`aria-controls` clean. */}
       <h3 className="w-full">
         <button

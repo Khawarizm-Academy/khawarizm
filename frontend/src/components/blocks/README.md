@@ -21,7 +21,7 @@ call site. Import everything from `@/components/blocks`.
 | `member-card.tsx`      | `MemberCard`                | navy team card (team ×4, future about page)                                          |
 | `filter.tsx`           | `FilterTabs`, `FilterSelect`| works filtering (text tabs with Arabic dots on md+, 48px select below)               |
 | `collapsible.tsx`      | `CollapsibleRegion`         | height-animated disclosure region — pair with any `<button aria-expanded>` accordion header |
-| `service-detail.tsx`   | `ServiceDetailCard`         | services page rows: title + display heading + gold icon disc behind one toggle; body + gold-checked bullets ease open in the second `md` column |
+| `service-detail.tsx`   | `ServiceDetailCard`         | services page rows: title + display heading + gold icon disc behind one toggle; body + gold-checked bullets ease open **under the heading** — full-width vertical stack, so long Arabic headings stay on one line |
 
 Rules of engagement (extend the `components/README.md` list):
 
