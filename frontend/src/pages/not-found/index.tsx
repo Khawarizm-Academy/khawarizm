@@ -8,10 +8,7 @@ import { HOME_ANCHORS, ROUTES } from "@/router/routes";
 
 function NotFoundArt() {
   return (
-    <div
-      aria-hidden
-      className="relative mx-auto h-60 w-full max-w-95 md:h-85"
-    >
+    <div aria-hidden className="relative mx-auto h-60 w-full max-w-95 md:h-85">
       <Arch className="absolute top-[6%] left-0 h-[60%] w-[34%] bg-accent" />
       <Arch className="absolute bottom-0 left-[30%] flex h-[78%] w-[38%] items-center justify-center bg-brand">
         <SearchX className="size-14 text-navy md:size-20" strokeWidth={1.5} />
@@ -27,13 +24,13 @@ function NotFoundPage() {
     <PageTransition>
       <Container className="grid min-h-[70svh] items-center gap-10 py-16 md:grid-cols-2">
         <div className="flex flex-col items-start gap-5">
-          <p className="font-display text-8xl leading-none font-extrabold text-navy md:text-[10rem]">
+          <p className="font-display text-8xl leading-none font-extrabold text-white md:text-[10rem]">
             <span dir="ltr">404</span>
           </p>
-          <h1 className="font-display text-3xl font-extrabold md:text-4xl">
+          <h1 className="font-display text-3xl font-extrabold md:text-4xl text-white">
             الصفحة غير موجودة
           </h1>
-          <p className="max-w-md leading-loose text-muted">
+          <p className="max-w-md leading-loose text-muted text-white">
             الرابط الذي تبحث عنه غير موجود أو تم نقله. عُد إلى الصفحة الرئيسية،
             أو تصفّح دوراتنا وأعمالنا.
           </p>

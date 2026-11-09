@@ -38,6 +38,7 @@ src/
 ├── components/
 │   ├── layout/   header · footer · container · logo   (page shell)
 │   ├── ui/       button · section-heading · shapes · text-link · rating
+│   ├── blocks/   Section · Split · Stagger · cards · CtaBand · StatsBand …
 │   └── motion/   variants · FadeIn · PageTransition   (animation system)
 ├── pages/        route pages
 │   ├── home/     index.tsx + one file per section in sections/
@@ -200,18 +201,28 @@ The document is `dir="rtl"`; keep these rules or the layout will break:
 
 ---
 
-## 6. Component inventory (`components/ui`)
+## 6. Component inventory
+
+### `components/ui` — design atoms
 
 | Component        | Props                              | Notes                                                                 |
 | ---------------- | ---------------------------------- | --------------------------------------------------------------------- |
 | `Button` + `buttonVariants` | `variant`, `size`       | variants: `primary` `secondary` `ghost` `outline` `surface` `light` `dark`; sizes `sm/md/lg/icon`; collocate `buttonVariants({…})` on `<a>`/`<Link>` |
-| `SectionHeading` | `eyebrow, title, tone, align, size`| `size="md"` only for Services (40/56); H2 36/50 mobile → 56/72 desktop |
+| `SectionHeading` | `eyebrow, title?, tone, align, size`| omit `title` for a standalone eyebrow; `size="md"` only for Services (40/56); H2 36/50 mobile → 56/72 desktop |
 | `TextLink`       | `tone="light"/"dark"`              | the “اعرف المزيد” link; leftward arrow slides on hover                 |
 | `Rating`         | `count`, `label`                   | 24 px gold stars; `role="img"` + Arabic label                          |
 | `Arch`           | div props                          | rounded-top identity shape (`rounded-t-full`)                          |
 | `Burst`          | `points`                           | star-burst SVG; spins via `motion-safe:animate-rotate-slow`            |
 | `Portrait`       | `icon`                             | gradient photo placeholder; add `rounded-t-full` for arches            |
 | `MiniCard`/`ChartCard` | –                            | white floating UI-illustrations; internally `dir="ltr"`                |
+
+### `components/blocks` — page-composition blocks
+
+Full catalog + examples: `src/components/blocks/README.md`. The repeatable
+building blocks: `Section` (+ `SectionAction`), `Split`, `StaggerGrid`/
+`StaggerItem` + `lift()` offsets, `StatsBand`, `CtaBand`, `PageHero`,
+`IconCard`, `CourseCard`, `TestimonialCard`, `ShowcaseCard`, `MemberCard`,
+`FilterTabs`/`FilterSelect`.
 
 `layout/`: `Container` (1170 px column, `px-6`/`md:px-8`), `Header`,
 `Footer`, `Logo` (swap for the real SVG when it arrives).
@@ -233,16 +244,19 @@ The document is `dir="rtl"`; keep these rules or the layout will break:
 
 1. Path in `src/router/routes.ts` (registry keeps links in sync).
 2. Route element in `src/router/index.tsx` under `RootLayout`.
-3. `src/pages/<name>/index.tsx` — wrap sections with `FadeIn` /
-   `staggerContainer` from `@/components/motion`; default + named export.
+3. `src/pages/<name>/index.tsx` — compose `@/components/blocks` pieces
+   (`PageHero`, `Section` + `SectionHeading` + card blocks with
+   `StaggerGrid`); default + named export.
 4. Section content → `src/constants/`; anything reused → `src/types`,
-   `src/components/ui` (or build the missing piece there).
+   `src/components/ui`, `src/components/blocks` (or build the missing
+   piece there as a block).
 5. Links pointing to its sections must use `HOME_ANCHORS`-style hashes.
 6. Run `bun run typecheck && bun run lint && bun run build`.
 
 Rules: sections import *only* via `@/…` aliases; no component outside
-`components/` defines its own button/heading styling; no hardcoded hex
-— tokens only; every interactive element RTL-checked.
+`components/` defines its own button/heading/card styling; no hardcoded
+hex — tokens only; decorative art stays page-side and is handed to
+blocks as slot content; every interactive element RTL-checked.
 
 ---
 

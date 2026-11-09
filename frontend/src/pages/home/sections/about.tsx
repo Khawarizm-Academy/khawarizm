@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout";
+import { Section, Split } from "@/components/blocks";
 import { FadeIn } from "@/components/motion";
 import { Portrait, SectionHeading, buttonVariants } from "@/components/ui";
 import { ROUTES } from "@/router/routes";
@@ -33,14 +33,23 @@ function AboutArt() {
   );
 }
 
+/** من نحن on Home: art owns the desktop's first (right) column — `Split reverse`. */
 function About() {
   return (
-    <section id="about" className="bg-background pt-8 pb-16 md:pt-36 md:pb-24">
-      {/* Art first in the DOM: top on mobile (Figma mobile shows the image first), right column on desktop (RTL grid). */}
-      <Container className="grid items-center gap-12 md:grid-cols-2 md:gap-14">
-        <FadeIn>
-          <AboutArt />
-        </FadeIn>
+    <Section
+      id="about"
+      tone="background"
+      containerClassName="pt-8 pb-16 md:pt-36 md:pb-24"
+    >
+      <Split
+        className="gap-12"
+        reverse
+        media={
+          <FadeIn>
+            <AboutArt />
+          </FadeIn>
+        }
+      >
         <FadeIn delay={0.1} className="flex flex-col items-start gap-5">
           <SectionHeading
             eyebrow="من نحن"
@@ -63,8 +72,8 @@ function About() {
             </a>
           </div>
         </FadeIn>
-      </Container>
-    </section>
+      </Split>
+    </Section>
   );
 }
 
