@@ -18,7 +18,7 @@ export const FOOTER_MENU: NavItem[] = [
   { label: "من نحن", href: ROUTES.about },
   { label: "الخدمات", href: HOME_ANCHORS.services },
   { label: "الأعمال", href: HOME_ANCHORS.works },
-  { label: "تواصل معنا", href: HOME_ANCHORS.contact },
+  { label: "تواصل معنا", href: ROUTES.contact },
 ];
 
 export const FOOTER_SERVICES: NavItem[] = [

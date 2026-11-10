@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui";
 import { NAV_ITEMS } from "@/constants/site";
-import { HOME_ANCHORS } from "@/router/routes";
+import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 import { Container } from "./container";
 import { Logo } from "./logo";
@@ -42,7 +42,7 @@ function Header() {
         </nav>
 
         <a
-          href={HOME_ANCHORS.contact}
+          href={ROUTES.contact}
           className={cn(
             buttonVariants({ variant: "light", size: "lg" }),
             "hidden md:inline-flex",
@@ -88,7 +88,7 @@ function Header() {
                 ))}
               </ul>
               <a
-                href={HOME_ANCHORS.contact}
+                href={ROUTES.contact}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "primary", size: "lg" }),
