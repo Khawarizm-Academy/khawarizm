@@ -8,6 +8,7 @@ Folder map:
 | Folder        | Purpose                                                        |
 | ------------- | -------------------------------------------------------------- |
 | `components/` | reusable code in 4 groups: `layout/` (page shell), `ui/` (design-system atoms), `blocks/` (page-composition blocks), `motion/` (animation primitives) |
+| `seo/`        | centralized SEO (`@/seo`) — `<SEO />` component, Helmet tags, JSON-LD schemas, site config — see folder README |
 | `pages/`      | one folder per routed page — thin wrappers that compose `sections` |
 | `constants/`  | typed content registries (`site.ts` nav + labels, `home.ts`/`about.ts`/`services.ts`/`contact.ts` section data — sample data, see its README) |
 | `router/`     | `routes.ts` single source of path truth + `index.tsx` router config |

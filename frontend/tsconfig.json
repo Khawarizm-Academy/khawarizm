@@ -1,5 +1,9 @@
 {
   "files": [],
+  "compilerOptions": {
+    /** Mirrors tsconfig.app.json so Bun scripts (e.g. sitemap generation) resolve `@/` imports too. */
+    "paths": { "@/*": ["./src/*"] }
+  },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

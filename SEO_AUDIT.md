@@ -2,20 +2,46 @@
 
 ## Implemented
 
-- Centralized route-aware metadata in `frontend/src/components/seo.tsx`: unique titles, descriptions, canonical URLs, robots directives, Open Graph tags, Twitter cards, and accurate Organization/WebSite/WebPage JSON-LD.
-- Added crawl directives in `frontend/public/robots.txt` and a public-route sitemap in `frontend/public/sitemap.xml`.
-- Added route-level lazy loading with React `lazy()` and a shared suspense boundary.
-- Kept React, Vite, TypeScript, React Router, and the existing visual system unchanged.
-- Preserved semantic page headings, accessible labels, local assets, and existing interaction patterns.
+- **Centralized SEO module** in `frontend/src/seo/` (imported as `@/seo`):
+  `SEO` component (title, description, canonical, robots, theme-color, Open
+  Graph, Twitter), `StructuredData` (JSON-LD), `siteConfig` (production
+  origin `https://khawarizm.vercel.app` + brand facts), `defaultSEO`,
+  `generateCanonicalUrl`, `generateMetadata`, and reusable Schema.org
+  factories in `seo/schemas/` (Organization, WebSite, WebPage,
+  BreadcrumbList, Article/BlogPosting).
+- **Helmet integration**: `react-helmet-async` v3 (React 19 support) with
+  `HelmetProvider` in `src/main.tsx`; the previous imperative `RouteSEO` in
+  `components/seo.tsx` was removed — pages own their metadata via `<SEO />`.
+- **Static prerendering**: `@prerenderer/rollup-plugin` +
+  `@prerenderer/renderer-puppeteer` (React-snap is incompatible with
+  React 19/Vite 8). All 11 public routes render real content + page-specific
+  metadata into `dist/**/index.html` at build time; `postProcess` rewrites
+  the render-server origin to production.
+- **Sitemap generation**: `frontend/scripts/generate-sitemap.ts` derives
+  `public/sitemap.xml` from the route registry + project data (absolute
+  URLs, no manual maintenance); runs inside `bun run build`.
+- **robots.txt**: production sitemap URL, crawl allow-all with a reserved
+  `/api/` exclusion.
+- **og-image**: `public/og-image.png` (1200×630, regenerate with
+  `bun scripts/generate-og-image.ts`).
+- Kept React, Vite, TypeScript, React Router, routing structure, and the
+  existing visual system unchanged.
 
-## Rendering decision
+## Notes
 
-The project remains a Vite client-rendered application. No authenticated area or server data currently requires SSR, and adding a server renderer would add deployment complexity without a verified production origin or backend. The HTML shell now carries valid baseline metadata; route-specific metadata is applied immediately by the shared SEO manager during navigation. A production deployment can add prerendering later if crawler-facing initial HTML becomes a requirement.
-
-## Deployment note
-
-The sitemap currently uses public paths because the production hostname has not been provided. Before publishing to a permanent domain, replace each `<loc>` value with the final HTTPS origin and set the same origin in the SEO canonical configuration.
+- `Product`/`ContactPoint`/aggregate-rating schemas are intentionally absent:
+  the site sells nothing yet and contact channels are placeholders — no data
+  is fabricated. Add `Product` via the `schema` prop of `<SEO />` when
+  applicable.
+- Project detail pages currently share the title `[اسم المشروع] | خوارزم`
+  because the project names in `@/constants/home` are placeholders; titles
+  become unique automatically once real names land.
+- `vite preview` resolves extensionless routes only with a trailing slash
+  (`/about/`); static hosts (e.g. Vercel) map `/about` → `about/index.html`
+  directly — this is a local preview quirk, not a deployment issue.
 
 ## Checks
 
-Run `npm run typecheck`, `npm run build`, and `npm run lint` from `frontend/`. Public paths are declared in `frontend/public/manus-routes.json`.
+Run `bun run typecheck`, `bun run lint`, and `bun run build` from
+`frontend/`. The build generates the sitemap, builds, prerenders all public
+routes, and rewrites asset URLs to the production origin.

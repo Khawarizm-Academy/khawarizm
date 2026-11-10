@@ -13,6 +13,7 @@ import {
 import { FadeIn } from "@/components/motion";
 import { SectionHeading } from "@/components/ui";
 import { KIND_LABELS, PROJECTS } from "@/constants/home";
+import { SEO } from "@/seo";
 import { ROUTES } from "@/router/routes";
 import { NotFoundPage } from "@/pages/not-found";
 
@@ -39,6 +40,17 @@ function ProjectPage() {
 
   return (
     <>
+      <SEO
+        title={project.title}
+        description={`مشروع ${KIND_LABELS[project.kind]} من مشاريع خوارزم الرقمية.`}
+        canonical={`${ROUTES.works}/${project.id}`}
+        image={project.image}
+        breadcrumb={[
+          { name: "الرئيسية", path: ROUTES.home },
+          { name: "أعمالنا", path: ROUTES.works },
+          { name: project.title },
+        ]}
+      />
       <Section tone="background" containerClassName="pt-10 pb-20 md:pt-12 md:pb-28">
         <BackLink href={ROUTES.works}>العودة إلى الأعمال</BackLink>
         <FadeIn className="mx-auto mt-16 max-w-142.5">

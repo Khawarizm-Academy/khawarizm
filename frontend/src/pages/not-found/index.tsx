@@ -4,6 +4,7 @@ import { PageTransition } from "@/components/motion";
 import { Container } from "@/components/layout";
 import { Arch, Burst, MiniCard, buttonVariants } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { SEO } from "@/seo";
 import { HOME_ANCHORS, ROUTES } from "@/router/routes";
 
 function NotFoundArt() {
@@ -22,6 +23,12 @@ function NotFoundArt() {
 function NotFoundPage() {
   return (
     <PageTransition>
+      {/* Not a real content page — keep it out of indexes. */}
+      <SEO
+        title="الصفحة غير موجودة"
+        description="عذرًا، الصفحة المطلوبة غير موجودة."
+        robots="noindex, nofollow"
+      />
       <Container className="grid min-h-[70svh] items-center gap-10 py-16 md:grid-cols-2">
         <div className="flex flex-col items-start gap-5">
           <p className="font-display text-8xl leading-none font-extrabold text-white md:text-[10rem]">

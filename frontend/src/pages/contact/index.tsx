@@ -4,6 +4,8 @@ import { ContactCards, PageHero, Section } from "@/components/blocks";
 import { FadeIn } from "@/components/motion";
 import { Field, FieldInput, FieldSelect, FieldTextarea, buttonVariants } from "@/components/ui";
 import { CONTACT_CHANNELS, CONTACT_SERVICE_OPTIONS } from "@/constants/contact";
+import { SEO } from "@/seo";
+import { ROUTES } from "@/router/routes";
 import { cn } from "@/lib/utils";
 
 function ContactPage() {
@@ -11,6 +13,15 @@ function ContactPage() {
 
   return (
     <>
+      <SEO
+        title="تواصل معنا"
+        description="أخبرنا عن فكرتك أو عن الدورة التي تبحث عنها، وسنعود إليك قريبًا."
+        canonical={ROUTES.contact}
+        breadcrumb={[
+          { name: "الرئيسية", path: ROUTES.home },
+          { name: "تواصل معنا" },
+        ]}
+      />
       <PageHero title="تواصل معنا" lead="أخبرنا عن فكرتك أو عن الدورة التي تبحث عنها، وسنعود إليك قريبًا." />
       <Section tone="background" containerClassName="pt-0">
         <div className="relative min-h-168 overflow-hidden rounded-md bg-[radial-gradient(circle_at_20%_25%,rgba(229,182,92,0.28),transparent_30%),linear-gradient(135deg,#d8d8d8_0%,#b8c3c8_48%,#8a9ca7_100%)] md:min-h-180">

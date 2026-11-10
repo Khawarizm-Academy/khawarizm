@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+
+# Reserved for future backend endpoints — nothing public is blocked.
 Disallow: /api/
-Sitemap: /sitemap.xml
+
+Sitemap: https://khawarizm.vercel.app/sitemap.xml

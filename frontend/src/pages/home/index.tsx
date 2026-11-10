@@ -1,3 +1,5 @@
+import { SEO } from "@/seo";
+import { ROUTES } from "@/router/routes";
 import { About } from "./sections/about";
 import { Courses } from "./sections/courses";
 import { Cta } from "./sections/cta";
@@ -11,6 +13,8 @@ import { Works } from "./sections/works";
 function HomePage() {
   return (
     <>
+      {/* Home uses the site-wide defaults (brand title + description) from `@/seo`. */}
+      <SEO canonical={ROUTES.home} />
       <Hero />
       <About />
       <Stats />
