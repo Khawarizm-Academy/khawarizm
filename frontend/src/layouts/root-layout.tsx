@@ -2,6 +2,7 @@ import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { useLocation, useOutlet } from "react-router";
 import { Footer, Header } from "@/components/layout";
 import { pageTransitionProps } from "@/components/motion";
+import { RouteSEO } from "@/components/seo";
 
 /** App-wide wrapper every route renders into. Hosts the shared shell (header/footer) and animates between routes. */
 function RootLayout() {
@@ -13,6 +14,7 @@ function RootLayout() {
     /** `reducedMotion="user"` makes every motion animation respect the OS "reduce motion" setting. */
     <MotionConfig reducedMotion="user">
       <div className="flex min-h-svh flex-col bg-background text-foreground">
+        <RouteSEO />
         <Header />
         <main className="flex-1 bg-navy">
           <AnimatePresence mode="wait" initial>

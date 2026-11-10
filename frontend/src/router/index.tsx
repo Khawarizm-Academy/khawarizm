@@ -1,15 +1,17 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { RootLayout } from "@/layouts";
-import { AboutPage } from "@/pages/about";
-import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
-import { ServicesPage } from "@/pages/services";
-import { WorksPage } from "@/pages/works";
-import { ProjectPage } from "@/pages/project";
-import { ContactPage } from "@/pages/contact";
-import { PrivacyPage } from "@/pages/privacy";
-import { TermsPage } from "@/pages/terms";
 import { ROUTES } from "./routes";
+
+const HomePage = lazy(() => import("@/pages/home").then(({ HomePage }) => ({ default: HomePage })));
+const AboutPage = lazy(() => import("@/pages/about").then(({ AboutPage }) => ({ default: AboutPage })));
+const ServicesPage = lazy(() => import("@/pages/services").then(({ ServicesPage }) => ({ default: ServicesPage })));
+const WorksPage = lazy(() => import("@/pages/works").then(({ WorksPage }) => ({ default: WorksPage })));
+const ProjectPage = lazy(() => import("@/pages/project").then(({ ProjectPage }) => ({ default: ProjectPage })));
+const ContactPage = lazy(() => import("@/pages/contact").then(({ ContactPage }) => ({ default: ContactPage })));
+const PrivacyPage = lazy(() => import("@/pages/privacy").then(({ PrivacyPage }) => ({ default: PrivacyPage })));
+const TermsPage = lazy(() => import("@/pages/terms").then(({ TermsPage }) => ({ default: TermsPage })));
 
 const router = createBrowserRouter([
   {
@@ -30,7 +32,7 @@ const router = createBrowserRouter([
 ]);
 
 function AppRouter() {
-  return <RouterProvider router={router} />;
+  return <Suspense fallback={<div className="min-h-svh bg-navy" aria-busy="true" />}><RouterProvider router={router} /></Suspense>;
 }
 
 export { AppRouter };
