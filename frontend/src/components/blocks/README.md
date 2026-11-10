@@ -22,6 +22,13 @@ call site. Import everything from `@/components/blocks`.
 | `filter.tsx`           | `FilterTabs`, `FilterSelect`| works filtering (text tabs with Arabic dots on md+, 48px select below); `tone` flips the tab palette — default reads on cream, `tone="dark"` = white active tab on navy bands |
 | `collapsible.tsx`      | `CollapsibleRegion`         | height-animated disclosure region — pair with any `<button aria-expanded>` accordion header |
 | `service-detail.tsx`   | `ServiceDetailCard`         | services page rows: title + display heading + gold icon disc behind one toggle; body + gold-checked bullets ease open **under the heading** — full-width vertical stack, so long Arabic headings stay on one line |
+| `doc-layout.tsx`       | `DocLayout` (+ `DocRef`)    | the shared legal chrome of terms + privacy (one layout, one link set): hero → intro → numbered anchored sections (`terms-N` / `privacy-N` ids) → inquiry card → sibling cross-link + sticky aside (two-doc switcher + «في هذه الصفحة» TOC); content arrives parsed from `@/content/*.md` |
+| `page-intro.tsx`       | `PageIntro`                 | centered detail-page opener: eyebrow + oversized display title + lead + muted note (project brief, future course detail) |
+| `meta-strip.tsx`       | `MetaStrip` (+ `MetaItem`)  | bordered facts strip (الفئة / العميل / التاريخ) under a detail intro; keep three items for the Figma rhythm |
+| `video-tile.tsx`       | `VideoTile`                 | the shared video affordance: poster + centered play circle + duration chip; `onToggle` → real `aria-pressed` toggle button (about story reel), plain plate otherwise (project hero) |
+| `share-row.tsx`        | `ShareRow`, `ShareAction`   | muted caption + gold icon circles; `href` renders an `<a>`, callback a `<button>` (project share / copy / mail) |
+| `back-link.tsx`        | `BackLink`                  | «العودة إلى …» affordance on detail pages (project → works) |
+| `contact-cards.tsx`    | `ContactCards`, `ContactChannel` | bordered channel strip (call / mail / address) with gold discs; `ContactChannel` is the shared data type — see `constants/contact.ts` |
 
 Rules of engagement (extend the `components/README.md` list):
 
@@ -60,4 +67,23 @@ Usage snippets:
     media={<CtaArt />}
   />
 </Section>
+```
+
+Legal/long-form pages (terms + privacy) — the whole page is one block,
+content stays in markdown (`?raw` import → `parseLegalDoc` → props):
+
+```tsx
+import termsMd from "@/content/terms.md?raw";
+const doc = parseLegalDoc(termsMd);
+
+<DocLayout
+  doc={{ href: ROUTES.terms, title: doc.title }}
+  lead={doc.lead}
+  introTitle={doc.introTitle}
+  introParagraphs={doc.introParagraphs}
+  notes={doc.notes}
+  sections={doc.sections}
+  other={{ href: ROUTES.privacy, title: "سياسة الخصوصية" }}
+  anchorPrefix="terms"
+/>
 ```

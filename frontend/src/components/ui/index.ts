@@ -1,5 +1,6 @@
 export * from "./button";
 export * from "./doodles";
+export * from "./form";
 export * from "./photo-frame";
 export * from "./placeholder";
 export * from "./rating";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Play } from "lucide-react";
+import { VideoTile } from "@/components/blocks";
 import { Container } from "@/components/layout";
 import { FadeIn } from "@/components/motion";
 
@@ -35,20 +35,14 @@ export function AboutStory({ staggerGallery = false }: AboutStoryProps) {
                 <img src="/assets/41-3108.webp" alt="" className={`h-52 w-full rounded-md object-cover ${staggerGallery ? "md:-translate-y-6" : ""}`} />
               </div>
               <div className="order-last col-span-2 overflow-hidden rounded-md md:order-none md:col-start-3 md:row-span-2 md:col-span-1">
-                <button
-                  type="button"
-                  aria-label={playing ? "إيقاف الفيديو التعريفي" : "تشغيل الفيديو التعريفي"}
-                  aria-pressed={playing}
-                  onClick={() => setPlaying((value) => !value)}
-                  className="group relative block h-72 w-full overflow-hidden rounded-md md:h-full"
-                >
-                  <img src="/assets/41-3085.webp" alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <span className="absolute inset-0 bg-navy/30" />
-                  <span className="absolute inset-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white text-white transition-transform group-hover:scale-110">
-                    <Play className="ml-1 size-8 fill-white" />
-                  </span>
-                  <span className="absolute bottom-4 right-4 rounded-md bg-navy/60 px-3 py-1 font-sans text-sm text-white">1:45</span>
-                </button>
+                <VideoTile
+                  src="/assets/41-3085.webp"
+                  label={playing ? "إيقاف الفيديو التعريفي" : "تشغيل الفيديو التعريفي"}
+                  duration="1:45"
+                  onToggle={() => setPlaying((value) => !value)}
+                  pressed={playing}
+                  className="h-72 md:h-full"
+                />
               </div>
             </div>
           </FadeIn>

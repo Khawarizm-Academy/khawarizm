@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
-  eyebrow: string;
+  /** Brand eyebrow above the title — omit to render the title alone (plain H2 blocks like «التحدي»/«الحل»). */
+  eyebrow?: string;
   /** Omit to render the eyebrow alone (standalone `قصتنا`/`فريقنا` labels). */
   title?: string;
   /** `dark` = on a navy section. */
@@ -24,15 +25,17 @@ function SectionHeading({
   const dark = tone === "dark";
   return (
     <div className={cn(align === "center" && "text-center", className)}>
-      <p
-        className={cn(
-          title ? "mb-6" : "",
-          "font-heading text-base font-medium leading-7",
-          dark ? "text-brand" : "text-brand-ink",
-        )}
-      >
-        {eyebrow}
-      </p>
+      {eyebrow && (
+        <p
+          className={cn(
+            title ? "mb-6" : "",
+            "font-heading text-base font-medium leading-7",
+            dark ? "text-brand" : "text-brand-ink",
+          )}
+        >
+          {eyebrow}
+        </p>
+      )}
       {title && (
         <h2
           className={cn(

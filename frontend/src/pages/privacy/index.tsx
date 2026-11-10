@@ -1,35 +1,24 @@
-import { PageHero, Section } from "@/components/blocks";
-import { buttonVariants } from "@/components/ui";
+import { DocLayout } from "@/components/blocks";
 import { ROUTES } from "@/router/routes";
-import { cn } from "@/lib/utils";
+import { parseLegalDoc } from "@/lib/markdown";
+import privacyMd from "@/content/privacy.md?raw";
 
-const sections = [
-  ["نطاق هذه السياسة", "تشمل هذه السياسة المعلومات التي تقدّمها عبر الموقع ونماذج التواصل، وما يرتبط بها من مراسلات حول الدورات التعليمية والمشاريع الرقمية. ويُقصد بعبارة «بياناتك» المعلومات التي يمكن ربطها بك، مثل الاسم ووسيلة التواصل.", "إذا انتقلت من موقعنا إلى منصة تعليمية أو خدمة خارجية، فاطّلع على سياسة الخصوصية الخاصة بها؛ فقد تختلف طريقة تعاملها مع المعلومات عن الموصوف هنا."],
-  ["المعلومات التي نجمعها", "قد تزوّدنا باسمك وبريدك الإلكتروني ووسيلة التواصل التي تختارها، إلى جانب تفاصيل الدورة التي تهتم بها أو وصف المشروع الذي ترغب في تنفيذه. وعند التسجيل، قد نطلب معلومات تساعد على تنظيم المشاركة ومتابعة تقدّمك التعليمي.", "قد يتضمّن الاستخدام أيضًا معلومات تقنية أساسية، مثل نوع المتصفح والجهاز والصفحات التي تزورها. لا ترسل كلمات مرور أو بيانات دفع حساسة أو معلومات شخصية لا يحتاجها طلبك، ولا تشارك بيانات أشخاص آخرين دون إذنهم."],
-  ["كيف نستخدم معلوماتك", "نستخدم المعلومات للرد على استفساراتك، وتنظيم التسجيل والتواصل بشأن مواعيد الدورات وموادها، وفهم متطلبات مشاريع المواقع والتطبيقات وإعداد المقترحات ذات الصلة. وقد نستفيد من الملاحظات وبيانات الاستخدام لتحسين المحتوى وتجربة الموقع.", "عند إتاحة رسائل اختيارية عن الدورات والخدمات، يمكنك اختيار تلقيها أو التوقف عنها. ولا يعني إرسال استفسار موافقتك تلقائيًا على تلقي مراسلات تسويقية غير مرتبطة بطلبك."],
-  ["ملفات تعريف الارتباط", "قد يستخدم الموقع ملفات صغيرة تُحفظ في متصفحك لتشغيل وظائف أساسية وتذكّر بعض التفضيلات. وعند استخدام أدوات تحليل اختيارية، ينبغي توضيح غرضها وإتاحة الاختيار المناسب قبل تفعيلها.", "يمكنك إدارة هذه الملفات أو حذفها من إعدادات المتصفح. وقد يؤثر تعطيل الملفات الضرورية في عمل بعض أجزاء الموقع، بينما لا ينبغي أن يمنع رفض الملفات الاختيارية تصفّح المحتوى الأساسي."],
-  ["مشاركة المعلومات", "قد نحتاج إلى مشاركة القدر الضروري من المعلومات مع مقدّمي خدمات يساعدون في الاستضافة أو التواصل أو إدارة التعلّم، وبما يخدم الغرض الذي جُمعت من أجله. ولا تُستخدم بيانات التواصل بغرض بيعها لطرف آخر.", "قد تُشارك معلومات عندما يستلزم ذلك التزام واجب التطبيق أو حماية الحقوق ومعالجة إساءة الاستخدام. أما نشر مشروعك أو شهادتك أو اسمك ضمن أعمالنا، فيتطلّب اتفاقًا مناسبًا معك على ما سيُعرض."],
-  ["الاحتفاظ بالبيانات وحمايتها", "يُراعى الاحتفاظ بالمعلومات للمدة اللازمة لمتابعة طلبك أو تقديم الخدمة، وما قد يرتبط بذلك من متطلبات تعاقدية أو التزامات واجبة التطبيق. وعندما تنتفي الحاجة، تُراجع إمكانية حذف المعلومات أو إزالة ما يعرّف بصاحبها.", "تُراعى تدابير تنظيمية وتقنية مناسبة لطبيعة المعلومات، مع حصر الوصول بحسب الحاجة. ومع ذلك، لا يمكن ضمان الأمان المطلق لأي إرسال عبر الإنترنت؛ لذا تجنّب تضمين بيانات حساسة في الرسائل العامة."],
-  ["خياراتك وطلباتك", "يمكنك التواصل لطلب الاطّلاع على معلوماتك أو تصحيحها أو حذفها، أو للاستفسار عن استخدامها. وقد نطلب ما يكفي للتحقّق من هويتك قبل الاستجابة، حمايةً لك من وصول غير مصرح به.", "تُراجع الطلبات بحسب طبيعتها والالتزامات ذات الصلة، وقد يتعذّر حذف بعض السجلات اللازمة لاستكمال خدمة أو التزام قائم. ويمكنك في أي وقت طلب إيقاف المراسلات الاختيارية دون التأثير في الرسائل الضرورية للخدمة."],
-  ["خصوصية المتعلّمين الصغار", "إذا كان المتعلّم دون السن التي تسمح له بإبرام الترتيبات اللازمة بنفسه، فينبغي أن يتم التسجيل والتواصل بمشاركة ولي الأمر أو بموافقته المناسبة. ويُرجى عدم إرسال معلومات إضافية عن الأطفال لا تتطلّبها المشاركة التعليمية.", "إذا اعتقد ولي الأمر أن معلومات طفل أُرسلت دون إذن مناسب، فيمكنه التواصل لطلب مراجعتها واتخاذ الإجراء الملائم."],
-  ["التحديثات والتواصل", "قد تُراجع هذه السياسة عند تغيّر الخدمات أو طريقة استخدام المعلومات. تُعرض النسخة المحدّثة في هذه الصفحة، ويُوضّح أي تغيير جوهري بالطريقة المناسبة قبل تطبيقه متى كان ذلك مطلوبًا.", "لأي سؤال عن الخصوصية أو لطلب يخص بياناتك، استخدم نموذج «تواصل معنا» واختر وصفًا واضحًا للطلب. يُفضّل ذكر الخدمة المرتبطة به دون إرفاق معلومات حساسة غير ضرورية."],
-] as const;
+const doc = parseLegalDoc(privacyMd);
 
 export function PrivacyPage() {
   return (
-    <>
-      <PageHero title="سياسة الخصوصية" lead="تعرّف على كيفية التعامل مع بياناتك عند التعلّم معنا أو طلب خدماتنا الرقمية." />
-      <Section tone="background" containerClassName="py-16 md:py-20">
-        <div dir="rtl" className="grid gap-16 lg:grid-cols-[1fr_280px] lg:gap-20">
-          <main className="order-last lg:order-first">
-            <header className="pb-10"><h2 className="font-display text-4xl font-extrabold leading-[1.4] text-foreground md:text-[40px]">خصوصيتك جزء من ثقتك بنا</h2><p className="mt-5 text-base leading-8 text-muted">توضّح هذه السياسة طبيعة المعلومات المرتبطة باستخدام موقع أكاديمية خوارزم، والتسجيل في الدورات، وطلب تصميم المواقع وتطوير التطبيقات. نحرص على أن تعرف لماذا نطلب بياناتك، وكيف تُستخدم، وما الخيارات المتاحة لك.</p><p className="mt-4 text-sm leading-7 text-brand-ink">نسخة توضيحية للمراجعة قبل النشر</p></header>
-            {sections.map(([title, first, second], index) => <section id={`privacy-${index + 1}`} key={title} className="border-t border-border py-8"><div className="flex items-baseline gap-3"><h3 className="flex-1 font-heading text-2xl font-bold leading-9 text-foreground">{title}</h3><span className="font-heading text-base font-medium text-brand-ink">{String(index + 1).padStart(2, "0")}</span></div><p className="mt-5 text-base leading-8 text-muted">{first}</p><p className="mt-4 text-base leading-8 text-muted">{second}</p></section>)}
-            <div className="rounded-md bg-sand p-8"><h3 className="font-heading text-2xl font-bold text-foreground">هل لديك استفسار؟</h3><p className="mt-4 text-base leading-8 text-muted">إذا رغبت في توضيح استخدام بياناتك أو تقديم طلب يخصّها، يمكنك مراسلتنا عبر نموذج التواصل.</p><a href={ROUTES.contact} className={cn(buttonVariants({ variant: "surface", size: "lg" }), "mt-5")}>تواصل معنا</a></div>
-            <a href="#" className="mt-8 inline-block text-base text-brand-ink">اطّلع أيضًا على الشروط والأحكام ←</a>
-          </main>
-          <aside className="order-first lg:order-last"><div className="lg:sticky lg:top-8"><p className="font-heading text-base font-medium text-brand-ink">الوثائق القانونية</p><div className="mt-4 space-y-2"><a href="/privacy" className="block rounded-md bg-sand px-5 py-3 font-heading text-base font-bold text-foreground">سياسة الخصوصية</a><a href="#" className="block rounded-md px-5 py-3 font-heading text-base text-foreground hover:bg-sand">الشروط والأحكام</a></div><div className="mt-8 rounded-md border border-border p-6"><p className="font-heading text-base font-medium text-brand-ink">في هذه الصفحة</p><div className="mt-4 space-y-3">{sections.map(([title], index) => <a key={title} href={`#privacy-${index + 1}`} className="flex gap-2 text-sm leading-7 text-foreground"><span className="text-brand-ink">{String(index + 1).padStart(2, "0")}</span><span>{title}</span></a>)}</div></div></div></aside>
-        </div>
-      </Section>
-    </>
+    <DocLayout
+      doc={{ href: ROUTES.privacy, title: doc.title }}
+      lead={doc.lead}
+      introTitle={doc.introTitle}
+      introParagraphs={doc.introParagraphs}
+      notes={doc.notes}
+      sections={doc.sections}
+      inquiry="إذا رغبت في توضيح استخدام بياناتك أو تقديم طلب يخصّها، يمكنك مراسلتنا عبر نموذج التواصل."
+      other={{ href: ROUTES.terms, title: "الشروط والأحكام" }}
+      anchorPrefix="privacy"
+    />
   );
 }
+
+export default PrivacyPage;

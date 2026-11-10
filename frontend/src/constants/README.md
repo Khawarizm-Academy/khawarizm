@@ -10,6 +10,7 @@ translatable and replaceable by API data later.
 | `home.ts`   | per-section data: `STATS`, `SERVICES` (+ lucide `icon`), `PROJECT_FILTERS` + `KIND_LABELS`, `PROJECTS` (id/kind/`gradient` classes stand in for real screenshots), `COURSES` (incl. `level` / `duration`), `TESTIMONIALS` |
 | `about.ts`  | `ABOUT_STATS`, `TEAM` |
 | `services.ts` | `SERVICES_DETAIL` (accordion rows for the services page: title/heading/body/icon/points), `SERVICE_STEPS` |
+| `contact.ts` | `CONTACT_CHANNELS` (the shared `ContactChannel` shape from `blocks/contact-cards` — placeholders until real channels land), `CONTACT_SERVICE_OPTIONS` (form select) |
 
 ⚠️ **Sample content** — `home.ts` is explicitly marked: the numbers,
 Projects, Courses and Testimonials are placeholder copy written for the
