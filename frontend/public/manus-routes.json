@@ -1,1 +1,1 @@
-{"routes":[{"path":"/","title":"الرئيسية"},{"path":"/about","title":"من نحن"},{"path":"/services","title":"الخدمات"},{"path":"/works","title":"الأعمال"},{"path":"/works/:projectId","title":"تفاصيل المشروع"},{"path":"/contact","title":"تواصل معنا"}]}
+{"routes":[{"path":"/","title":"الرئيسية"},{"path":"/about","title":"من نحن"},{"path":"/services","title":"الخدمات"},{"path":"/works","title":"الأعمال"},{"path":"/works/:projectId","title":"تفاصيل المشروع"},{"path":"/contact","title":"تواصل معنا"},{"path":"/privacy","title":"سياسة الخصوصية"}]}

@@ -7,6 +7,7 @@ export const ROUTES = {
   works: "/works",
   courses: "/courses",
   contact: "/contact",
+  privacy: "/privacy",
   notFound: "*",
 } as const;
 
