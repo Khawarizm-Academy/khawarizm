@@ -40,7 +40,7 @@ function Testimonials() {
         viewport={{ once: true, amount: 0.15 }}
       >
         {TESTIMONIALS.map((t, i) => (
-          <StaggerItem key={t.name} variants={reviewCardVariants(i)} className={lift(i, LIFTS)}>
+          <StaggerItem key={`${t.name}-${i}`} variants={reviewCardVariants(i)} className={lift(i, LIFTS)}>
             <TestimonialCard
               index={i}
               quote={t.quote}

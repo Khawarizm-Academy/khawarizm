@@ -8,6 +8,7 @@ export const ROUTES = {
   courses: "/courses",
   contact: "/contact",
   privacy: "/privacy",
+  terms: "/terms",
   notFound: "*",
 } as const;
 

@@ -30,5 +30,5 @@ export const FOOTER_SERVICES: NavItem[] = [
 
 export const FOOTER_LEGAL: NavItem[] = [
   { label: "سياسة الخصوصية", href: ROUTES.privacy },
-  { label: "الشروط والأحكام", href: "#" },
+  { label: "الشروط والأحكام", href: ROUTES.terms },
 ];

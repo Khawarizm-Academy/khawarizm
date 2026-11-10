@@ -8,6 +8,7 @@ import { WorksPage } from "@/pages/works";
 import { ProjectPage } from "@/pages/project";
 import { ContactPage } from "@/pages/contact";
 import { PrivacyPage } from "@/pages/privacy";
+import { TermsPage } from "@/pages/terms";
 import { ROUTES } from "./routes";
 
 const router = createBrowserRouter([
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: `${ROUTES.works}/:projectId`, element: <ProjectPage /> },
       { path: ROUTES.contact, element: <ContactPage /> },
       { path: ROUTES.privacy, element: <PrivacyPage /> },
+      { path: ROUTES.terms, element: <TermsPage /> },
       { path: ROUTES.notFound, element: <NotFoundPage /> },
     ],
   },
