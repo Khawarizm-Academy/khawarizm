@@ -21,12 +21,15 @@
     "motion": "^14.10.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "react-helmet-async": "^3.0.0",
     "react-router": "^8.5.1",
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
     "@eslint/js": "^10.0.1",
+    "@prerenderer/renderer-puppeteer": "^1.2.4",
+    "@prerenderer/rollup-plugin": "^0.3.12",
     "@rolldown/plugin-babel": "^0.3.0",
     "@tailwindcss/vite": "^4.3.5",
     "@types/babel__core": "^7.20.5",

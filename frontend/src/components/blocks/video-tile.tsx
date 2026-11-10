@@ -94,8 +94,9 @@ function VideoTile({
         aria-pressed={pressed}
         onClick={onToggle}
         className={cn(plate, "cursor-pointer")}
-        // the interactive branch *is* a button — callers only pass className (merged into the plate above)
-        {...(props as ComponentProps<"button">)}
+        // the interactive branch *is* a button — callers only pass className (merged into the plate above);
+        // bridge via `unknown`: div-typed `ref`/handlers can't cast straight to the button variants
+        {...(props as unknown as ComponentProps<"button">)}
       >
         {art}
       </button>
