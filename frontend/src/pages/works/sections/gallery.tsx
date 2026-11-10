@@ -47,13 +47,15 @@ function WorksGallery() {
 
       {featured && (
         <FadeIn className="mt-16" delay={0.08}>
-          <ShowcaseCard
-            title={featured.title}
-            chip={KIND_LABELS[featured.kind]}
-            image={featured.image}
-            gradient={featured.gradient}
-            className="h-120 md:h-180"
-          />
+          <a href={`/works/${featured.id}`}>
+            <ShowcaseCard
+              title={featured.title}
+              chip={KIND_LABELS[featured.kind]}
+              image={featured.image}
+              gradient={featured.gradient}
+              className="h-120 md:h-180"
+            />
+          </a>
         </FadeIn>
       )}
 
@@ -61,12 +63,14 @@ function WorksGallery() {
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {cards.map((project, index) => (
             <FadeIn key={project.id} delay={index * 0.06}>
-              <ShowcaseCard
-                title={project.title}
-                chip={KIND_LABELS[project.kind]}
-                image={project.image}
-                gradient={project.gradient}
-              />
+              <a href={`/works/${project.id}`}>
+                <ShowcaseCard
+                  title={project.title}
+                  chip={KIND_LABELS[project.kind]}
+                  image={project.image}
+                  gradient={project.gradient}
+                />
+              </a>
             </FadeIn>
           ))}
         </div>

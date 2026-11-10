@@ -5,6 +5,7 @@ import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
 import { ServicesPage } from "@/pages/services";
 import { WorksPage } from "@/pages/works";
+import { ProjectPage } from "@/pages/project";
 import { ROUTES } from "./routes";
 
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: ROUTES.about, element: <AboutPage /> },
       { path: ROUTES.services, element: <ServicesPage /> },
       { path: ROUTES.works, element: <WorksPage /> },
+      { path: `${ROUTES.works}/:projectId`, element: <ProjectPage /> },
       { path: ROUTES.notFound, element: <NotFoundPage /> },
     ],
   },
